@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: apuc0
+ * Date: 25.05.2016
+ * Time: 12:40
+ */
+class Options
+{
+    private $core;
+
+    function __construct()
+    {
+        $this->core = new Core();
+    }
+
+    public function get($key)
+    {
+        if (!empty($key)) {
+            $val = $this->core->db->getByField('option_key', $key, $this->core->config->db()['suffix'] . 'options');
+            return $val[0]['option_value'];
+        } else {
+            return false;
+        }
+    }
+
+    public function set($key, $value)
+    {
+        if (!empty($key)) {
+            $isset = $this->core->db->_isset(['option_key' => $key], $this->core->config->db()['suffix'] . 'options');
+            if($isset == 0){
+                return $this->core->db->insert(['option_key' => $key, 'option_value' => $value], $this->core->config->db()['suffix'] . 'options');
+            }
+            else {
+                return $this->core->db->update(['option_value' => $value], $this->core->config->db()['suffix'] . 'options', ['option_key' => $key]);
+            }
+        }
+        else {
+            return false;
+        }
+    }
+
+}

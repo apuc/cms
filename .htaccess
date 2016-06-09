@@ -1,0 +1,15 @@
+AddDefaultCharset UTF-8
+# mod_rewrite
+# Включить
+RewriteEngine On
+# Базовый URL для преобразований в каталоге
+RewriteBase /
+# если сомволическая сцылка, директория или файл существуют, отдавать как есть
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Из папки "DEV" отдавать как есть
+RewriteCond %{REQUEST_URI} !^/DEV/
+RewriteCond %{REQUEST_URI} !^/favicon.ico
+# Перенаправить все остальные запросы в index.php
+RewriteRule .* index.php/$0 [PT]
