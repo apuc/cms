@@ -14,7 +14,7 @@ class Config
         return [
             'host' => 'localhost',
             'user' => 'root',
-            'pass' => '',
+            'pass' => 'mysql',
             'db' => 'cms',
             'port' => NULL,
             'socket' => NULL,

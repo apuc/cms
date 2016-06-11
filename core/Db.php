@@ -134,7 +134,9 @@ class Db
                         $query .= " $k LIKE '%$v%'";
                     }
                 }
+                $query .= " AND";
             }
+            $query = substr($query, 0, -3);
             //var_dump($query);
             return $this->rawQuery($query);
         }
@@ -189,10 +191,38 @@ class Db
                     }
                 }
             }
+            $query .= " AND";
         }
         //var_dump($query);
+        $query = substr($query, 0, -3);
         //prn($query);
         $isset = $this->rawQuery($query);
         return $isset[0]['count'];
+    }
+    public function getWhere($data, $table, $direct = false){
+        $query = "SELECT * FROM `$table` ";
+        $query .= " WHERE";
+        foreach ($data as $k => $v) {
+            if ($k == 'id') {
+                $query .= " $k = $v";
+            } else {
+                if (is_int($v)) {
+                    $query .= " $k = $v";
+                } else {
+                    if($direct){
+                        $query .= " $k LIKE '$v'";
+                    }
+                    else {
+                        $query .= " $k LIKE '%$v%'";
+                    }
+                }
+            }
+            $query .= " AND";
+        }
+        //var_dump($query);
+        $query = substr($query, 0, -3);
+        $res = $this->rawQuery($query);
+        //prn($res);
+        return $res;
     }
 }

@@ -12,13 +12,22 @@ class Routing
     public function run()
     {
         $config = new Config();
-        if(isset($_SERVER['REQUEST_URI'])){
+        if (isset($_SERVER['REQUEST_URI'])) {
             $uri = explode('/', $_SERVER['REQUEST_URI']);
-            if($uri[1] == $config->routing()['admin-panel']){
+            if ($uri[1] == $config->routing()['admin-panel']) {
                 return 'admin';
             }
+        } else {
+            return 'main';
         }
-        else {
+    }
+
+    public function get_slug()
+    {
+        if (isset($_SERVER['REQUEST_URI'])) {
+            $uri = explode('/', $_SERVER['REQUEST_URI']);
+            return $uri[2];
+        } else {
             return 'main';
         }
     }

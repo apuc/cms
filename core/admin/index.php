@@ -9,7 +9,6 @@ $admin = new Admin();
 
 $adminConfig = new AdminConfig();
 
-global $options;
 
 foreach($adminConfig->get()['mods'] as $mod){
     include (ROOT_DIR . '/core/admin/mods/' . $mod . '/func.php');
@@ -19,5 +18,18 @@ foreach($adminConfig->get()['mods'] as $mod){
 
 include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/admin/admin.php');
 
-include ('skins/admin_lte/index.php');
+$cookie->set_all_cookie();
+
+if($user->current_user){
+    include ('skins/admin_lte/index.php');
+}
+else {
+    if($rout->get_slug() != "auth" && $rout->get_slug() != "register"){
+        header("Location: /" . $core->config->routing()['admin-panel'] . "/auth");
+    }
+    include ('skins/admin_lte/index.php');
+}
+
+
+
 

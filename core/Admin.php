@@ -48,6 +48,11 @@ class Admin
         }
     }
 
+    public function getActivePage(){
+
+
+    }
+
     public function title(){
         foreach ($this->menu_items as $item) {
             if ($this->slug == $item['slug']) {

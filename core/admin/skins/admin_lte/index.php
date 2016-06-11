@@ -39,7 +39,7 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
+    <?php if($rout->get_slug() != 'register' && $rout->get_slug() != 'auth'): ?>
     <header class="main-header">
         <!-- Logo -->
         <a href="index2.html" class="logo">
@@ -59,15 +59,15 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs"><?= get_login(); ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                 <p>
-                                    Alexander Pierce - Web Developer
-                                    <small>Member since Nov. 2012</small>
+                                    <?= get_login(); ?>
+                                    <small><?= get_dt_add('d-m-Y'); ?></small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -88,12 +88,13 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="/<?= config_routing('admin-panel') ?>/auth?logout=1" class="btn btn-default btn-flat">Выход</a>
                                 </div>
                             </li>
                         </ul>
                     </li>
                     <!-- Control Sidebar Toggle Button -->
+
                     <li>
                         <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                     </li>
@@ -102,6 +103,8 @@
         </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
+    <?php endif ?>
+    <?php if($rout->get_slug() != 'register' && $rout->get_slug() != 'auth'): ?>
     <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
@@ -120,6 +123,7 @@
         </section>
         <!-- /.sidebar -->
     </aside>
+    <?php endif ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

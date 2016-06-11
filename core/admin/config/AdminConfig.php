@@ -13,7 +13,9 @@ class AdminConfig
     {
         return [
             'mods' => [
-                'options'
+                'options',
+                'register',
+                'auth'
             ]
         ];
     }
