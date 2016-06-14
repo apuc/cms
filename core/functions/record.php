@@ -14,3 +14,7 @@ function record_get($id){
     return $record->get($id);
 }
 
+function record_getBySlug($slug){
+    global $record;
+    return $record->getBySlug($slug);
+}

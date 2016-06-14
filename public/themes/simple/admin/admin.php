@@ -20,7 +20,7 @@ function test_func2(){
    // add_user_meta(5, 'ghfgdghh', '5577oohjko');
     //prn(get_user_meta(5, 'ghfgdghh'));
    // prn(all_meta(5));
-    prn(record_get(39));
+    prn(record_getBySlug('privet2'));
 
 }
 

@@ -111,5 +111,10 @@ class Records
 
     }
 
+    public function getBySlug($slug)
+    {
+        return $this->core->db->getByField('slug', $slug, $this->core->config->db()['suffix'] . 'records')[0];
+    }
+
 
 }
