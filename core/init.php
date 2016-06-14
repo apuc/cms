@@ -32,7 +32,7 @@ $core = new Core();
 
 $rout = new Routing();
 $load = $rout->run();
-if($load == 'admin' || 'registration'){
+if($load == 'admin'){
     include (ROOT_DIR . '/core/admin/index.php');
 }
 else{
