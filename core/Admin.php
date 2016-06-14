@@ -29,6 +29,17 @@ class Admin
         ];
     }
 
+    public function addMenuRecord($title, $slug, $name, $icon = 'fa-book')
+    {
+        $this->menu_items[] = [
+            'title' => $title,
+            'slug' => $slug,
+            'name' => $name,
+            'icon' => $icon,
+            'record_type' => 'record',
+        ];
+    }
+
     public function getMenuItems()
     {
         return $this->menu_items;
@@ -43,7 +54,13 @@ class Admin
     {
         foreach ($this->menu_items as $item) {
             if ($this->slug == $item['slug']) {
-                call_user_func($item['func_name']);
+                if(isset($item['record_type'])){
+                    render_admin('/admin_lte/views/record_form.php', ['item' => $item]);
+                }
+                else{
+                    call_user_func($item['func_name']);
+                }
+
             }
         }
     }

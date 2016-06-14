@@ -20,8 +20,11 @@ function test_func2(){
    // add_user_meta(5, 'ghfgdghh', '5577oohjko');
     //prn(get_user_meta(5, 'ghfgdghh'));
    // prn(all_meta(5));
-    prn(get_current());
+    prn(record_get(39));
+
 }
+
+$record->addRecordsType(['title'=> 'Отзывы', 'slug' => 'feedback', 'icon' => 'fa-bell']);
 
 /*$cookie->hook('my_login');
 

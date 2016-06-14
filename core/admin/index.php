@@ -18,6 +18,7 @@ foreach($adminConfig->get()['mods'] as $mod){
 
 include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/admin/admin.php');
 
+$record->registerRecordType();
 $cookie->set_all_cookie();
 
 if($user->current_user){

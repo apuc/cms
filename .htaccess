@@ -9,7 +9,8 @@ RewriteCond %{REQUEST_FILENAME} !-l
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 # Из папки "DEV" отдавать как есть
-RewriteCond %{REQUEST_URI} !^/DEV/
+RewriteCond %{REQUEST_URI} !^/core/admin/skins/admin_lte/plugins/
+RewriteCond %{REQUEST_URI} !^/public/upload/
 RewriteCond %{REQUEST_URI} !^/favicon.ico
 # Перенаправить все остальные запросы в index.php
 RewriteRule .* index.php/$0 [PT]

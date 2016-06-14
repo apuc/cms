@@ -26,7 +26,7 @@
     <!-- Date Picker -->
     <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/datepicker/datepicker3.css">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker-bs3.css">
+    <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/daterangepicker/daterangepicker-bs3.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
@@ -330,7 +330,8 @@
 <script src="<?= $admin->getSkinDir() ?>/admin_lte/bootstrap/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="<?= $admin->getSkinDir() ?>/admin_lte/plugins/morris/morris.min.js"></script>
+
+
 <!-- Sparkline -->
 <script src="<?= $admin->getSkinDir() ?>/admin_lte/plugins/sparkline/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
@@ -352,8 +353,10 @@
 <!-- AdminLTE App -->
 <script src="<?= $admin->getSkinDir() ?>/admin_lte/dist/js/app.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?= $admin->getSkinDir() ?>/admin_lte/dist/js/pages/dashboard.js"></script>
+
 <!-- AdminLTE for demo purposes -->
 <script src="<?= $admin->getSkinDir() ?>/admin_lte/dist/js/demo.js"></script>
+<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<script src="<?= $admin->getSkinDir() ?>/admin_lte/dist/js/script.js"></script>
 </body>
 </html>
