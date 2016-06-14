@@ -8,7 +8,7 @@
  */
 class Records
 {
-
+    public $records_types;
     private $core;
 
     function __construct()
@@ -82,4 +82,34 @@ class Records
         }
         return $slug;
     }
+
+    public function addRecordsType($args)
+    {
+        $this->records_types[] = [
+            'title' => $args['title'],
+            'slug' => $args['slug'],
+            'icon' => $args['icon'],
+        ];
+    }
+
+    public function registerRecordType()
+    {
+        global $admin;
+        foreach($this->records_types as $item){
+            $admin->addMenuRecord($item['title'], $item['slug'], $item['title'], $item['icon']);
+
+        }
+    }
+
+    public function get($id)
+    {
+        return $this->core->db->getFromId($id, $this->core->config->db()['suffix'] . 'records');
+    }
+
+    public function search()
+    {
+
+    }
+
+
 }

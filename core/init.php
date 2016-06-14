@@ -18,11 +18,13 @@ require_once ('Records.php');
 $cookie = new Cookie();
 $config = new Config();
 $options = new Options();
+$record = new Records();
 
 require_once ('functions/config.php');
 require_once ('functions/cookie.php');
 require_once ('functions/options.php');
 require_once ('functions/parser.php');
+require_once ('functions/record.php');
 
 require_once ('User.php');
 require_once ('functions/user.php');
@@ -32,7 +34,7 @@ $core = new Core();
 
 $rout = new Routing();
 $load = $rout->run();
-if($load == 'admin' || 'registration'){
+if($load == 'admin'){
     include (ROOT_DIR . '/core/admin/index.php');
 }
 else{

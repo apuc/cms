@@ -1,3 +1,7 @@
 .idea
 
 cgi-bin
+
+config
+
+core/admin/skins/admin_lte/plugins/elFinder/files/
