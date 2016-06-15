@@ -28,7 +28,8 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/daterangepicker/daterangepicker-bs3.css">
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet"
+          href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,90 +40,97 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-    <?php if($rout->get_slug() != 'register' && $rout->get_slug() != 'auth'): ?>
-    <header class="main-header">
-        <!-- Logo -->
-        <a href="index2.html" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><?= $options->get('title'); ?></span>
-            <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><?= $options->get('title'); ?></span>
-        </a>
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top" role="navigation">
-            <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                <span class="sr-only">Toggle navigation</span>
+    <?php if ($user->current_user): ?>
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="index2.html" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><?= $options->get('title'); ?></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><?= $options->get('title'); ?></span>
             </a>
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                    <!-- User Account: style can be found in dropdown.less -->
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="hidden-xs"><?= get_login(); ?></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- User image -->
-                            <li class="user-header">
-                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                <p>
-                                    <?= get_login(); ?>
-                                    <small><?= get_dt_add('d-m-Y'); ?></small>
-                                </p>
-                            </li>
-                            <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Followers</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Sales</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Friends</a>
-                                </div>
-                            </li>
-                            <!-- Menu Footer-->
-                            <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                </div>
-                                <div class="pull-right">
-                                    <a href="/<?= config_routing('admin-panel') ?>/auth?logout=1" class="btn btn-default btn-flat">Выход</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- Control Sidebar Toggle Button -->
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="hidden-xs"><?= get_login(); ?></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    <p>
+                                        <?= get_login(); ?>
+                                        <small><?= get_dt_add('d-m-Y'); ?></small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Sales</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Friends</a>
+                                    </div>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="/<?= config_routing('admin-panel') ?>/auth?logout=1"
+                                           class="btn btn-default btn-flat">Выход</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
 
-                    <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <!-- Left side column. contains the logo and sidebar -->
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
     <?php endif ?>
-    <?php if($rout->get_slug() != 'register' && $rout->get_slug() != 'auth'): ?>
-    <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
+    <?php if ($user->current_user): ?>
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
 
-            <!-- sidebar menu: : style can be found in sidebar.less -->
-            <ul class="sidebar-menu">
-                <li class="header">Меню</li>
-                <?php foreach($admin->getMenuItems() as $item): ?>
-                    <li><a href="/<?= $config->routing()['admin-panel'] . '/' . $item['slug'] ?>"><i class="fa <?= $item['icon'] ?>"></i> <span><?= $item['title'] ?></span></a></li>
-                <?php endforeach; ?>
-                <li class="header">Дополнительно</li>
-                <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
-            </ul>
-        </section>
-        <!-- /.sidebar -->
-    </aside>
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li class="header">Меню</li>
+                    <?php foreach ($admin->getMenuItems() as $item): ?>
+                        <?php if ($item['show']): ?>
+                            <li class="<?= ($admin->getSlug() == $item['slug']) ? 'active' : '' ?>">
+                                <a href="/<?= $config->routing()['admin-panel'] . '/' . $item['slug'] ?>">
+                                    <i class="fa <?= $item['icon'] ?>"></i> <span><?= $item['title'] ?></span>
+                                </a>
+                            </li>
+                        <?php endif ?>
+                    <?php endforeach; ?>
+                    <li class="header">Дополнительно</li>
+                    <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
     <?php endif ?>
 
     <!-- Content Wrapper. Contains page content -->
@@ -148,7 +156,8 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.3.0
         </div>
-        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+        reserved.
     </footer>
 
     <!-- Control Sidebar -->
@@ -345,7 +354,8 @@
 <!-- datepicker -->
 <script src="<?= $admin->getSkinDir() ?>/admin_lte/plugins/datepicker/bootstrap-datepicker.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script src="<?= $admin->getSkinDir() ?>/admin_lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script
+    src="<?= $admin->getSkinDir() ?>/admin_lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
 <script src="<?= $admin->getSkinDir() ?>/admin_lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
