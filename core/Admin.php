@@ -12,24 +12,27 @@ class Admin
     public $menu_items = [];
     public $hooks = [];
     public $slug;
+    private $core;
 
     function __construct()
     {
         $this->slug = $this->getSlug();
+        $this->core = new Core();
     }
 
-    public function addMenuItem($title, $slug, $name, $func_name, $icon = 'fa-book')
+    public function addMenuItem($title, $slug, $name, $func_name, $icon = 'fa-book', $show = true)
     {
         $this->menu_items[] = [
             'title' => $title,
             'slug' => $slug,
             'name' => $name,
             'func_name' => $func_name,
-            'icon' => $icon
+            'icon' => $icon,
+            'show' => $show
         ];
     }
 
-    public function addMenuRecord($title, $slug, $name, $icon = 'fa-book')
+    public function addMenuRecord($title, $slug, $name, $icon = 'fa-book', $show = true)
     {
         $this->menu_items[] = [
             'title' => $title,
@@ -37,6 +40,7 @@ class Admin
             'name' => $name,
             'icon' => $icon,
             'record_type' => 'record',
+            'show' => $show
         ];
     }
 
@@ -55,12 +59,11 @@ class Admin
         foreach ($this->menu_items as $item) {
             if ($this->slug == $item['slug']) {
                 if(isset($item['record_type'])){
-                    render_admin('/admin_lte/views/record_form.php', ['item' => $item]);
+                    render_admin('/admin_lte/views/record_form.php', ['item' => $item, 'core' => $this->core]);
                 }
                 else{
                     call_user_func($item['func_name']);
                 }
-
             }
         }
     }

@@ -15,7 +15,8 @@ class AdminConfig
             'mods' => [
                 'options',
                 'register',
-                'auth'
+                'auth',
+                'record'
             ]
         ];
     }

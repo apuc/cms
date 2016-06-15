@@ -7,17 +7,11 @@
  *
  */
 
-$admin->addMenuItem('Отзывы', 'record', 'Отзывы', 'admin_record', 'fa-comment ');
+$admin->addMenuRecord('Записи', 'record', 'Записи', 'fa-comment');
 
-function admin_record(){
-    if(isset($_POST['title'])){
-        foreach($_POST as $k => $post){
-            set_option($k, $post);
-        }
-        render_admin('/admin_lte/views/alert_success.php', [
-            'title' => 'Настрйки сохранены',
-            'msg' => 'Удачное сохранение'
-        ]);
-    }
-    render_admin('/admin_lte/views/options.php', []);
+
+$admin->addMenuItem('Добавить запись', 'add_record', 'Добавить запись', 'admin_add_record', '', false);
+
+function admin_add_record() {
+    prn($_POST);
 }
