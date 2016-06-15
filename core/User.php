@@ -91,9 +91,7 @@ class User
 
     public function get_by_id($id)
     {
-
         return $this->core->db->getFromId($id, $this->core->config->db()['suffix'] . 'user');
-
     }
 
     /**

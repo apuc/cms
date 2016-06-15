@@ -31,7 +31,7 @@ class RecordMeta
 
     public function get($record_id, $meta_key)
     {
-        return $this->core->db->getWhere(['record_id' => $record_id, 'meta_key' => $meta_key], $this->core->config->db()['suffix'] . 'recordmeta')[0];
+        return $this->core->db->getWhere(['record_id' => $record_id, 'meta_key' => $meta_key], $this->core->config->db()['suffix'] . 'recordmeta')[0]['meta_value'];
     }
 
     public function all_meta($record_id)

@@ -13,6 +13,7 @@ class App
     public $record;
     public $user;
     public $option;
+    public $record_meta;
 
     function __construct()
     {
@@ -20,5 +21,6 @@ class App
         $this->record = new Records();
         $this->user = new User();
         $this->option = new Options();
+        $this->record_meta = new RecordMeta();
     }
 }
