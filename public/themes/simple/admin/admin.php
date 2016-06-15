@@ -22,7 +22,10 @@ function test_func2(){
    // prn(all_meta(5));
   //  prn(record_getBySlug('privet2'));
    // prn(record_update('40', ['author' => 2]));
-    prn(record_set(['author' => 5, 'id' => 45]));
+    //prn(record_meta_add(1, '3215', '000gy'));
+   //prn(record_meta_all_meta(1));
+   prn(record_meta_set(2, 'cxzc', '456523'));
+
 
 }
 
