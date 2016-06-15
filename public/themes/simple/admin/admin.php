@@ -20,7 +20,9 @@ function test_func2(){
    // add_user_meta(5, 'ghfgdghh', '5577oohjko');
     //prn(get_user_meta(5, 'ghfgdghh'));
    // prn(all_meta(5));
-    prn(record_getBySlug('privet2'));
+  //  prn(record_getBySlug('privet2'));
+   // prn(record_update('40', ['author' => 2]));
+    prn(record_set(['author' => 5, 'id' => 45]));
 
 }
 
