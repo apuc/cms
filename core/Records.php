@@ -65,19 +65,18 @@ class Records
     public function genSlug($title)
     {
         $slug = str2url($title);
-        $isset = $this->core->db->_isset(['slug'=>$slug], $this->core->config->db()['suffix'] . 'records', true);
-        if($isset != 0){
+        $isset = $this->core->db->_isset(['slug' => $slug], $this->core->config->db()['suffix'] . 'records', true);
+        if ($isset != 0) {
             $i = 1;
-            while($isset != 0){
-                if($i == 1){
+            while ($isset != 0) {
+                if ($i == 1) {
                     $slug .= $i;
-                }
-                else {
+                } else {
                     $slug = substr($slug, 0, -1);
                     $slug .= $i;
                 }
                 $i++;
-                $isset = $this->core->db->_isset(['slug'=>$slug], $this->core->config->db()['suffix'] . 'records', true);
+                $isset = $this->core->db->_isset(['slug' => $slug], $this->core->config->db()['suffix'] . 'records', true);
             }
         }
         return $slug;
@@ -95,7 +94,7 @@ class Records
     public function registerRecordType()
     {
         global $admin;
-        foreach($this->records_types as $item){
+        foreach ($this->records_types as $item) {
             $admin->addMenuRecord($item['title'], $item['slug'], $item['title'], $item['icon']);
 
         }
@@ -109,6 +108,31 @@ class Records
     public function search()
     {
 
+    }
+
+    public function getBySlug($slug)
+    {
+        return $this->core->db->getByField('slug', $slug, $this->core->config->db()['suffix'] . 'records')[0];
+    }
+
+    public function update($id, $data)
+    {
+        return $this->core->db->update($data, $this->core->config->db()['suffix'] . 'records', ['id' => $id]);
+
+    }
+
+    public function set($data)
+    {
+        if (isset($data['id'])) {
+            if ($this->core->db->_isset(['id' => $data['id']], $this->core->config->db()['suffix'] . 'records', true)) {
+                $res = $this->core->db->update($data, $this->core->config->db()['suffix'] . 'records', ['id' => $data['id']]);
+            } else {
+                $res = $this->core->db->insert($data, $this->core->config->db()['suffix'] . 'records');
+            }
+        } else {
+            $res = $this->core->db->insert($data, $this->core->config->db()['suffix'] . 'records');
+        }
+        return $res;
     }
 
 

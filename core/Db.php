@@ -27,6 +27,10 @@ class Db
         }
     }
 
+    /**
+     * @param string $query
+     * @return array|bool
+     */
     public function rawQuery($query)
     {
         $start = microtime(TRUE);
@@ -50,11 +54,19 @@ class Db
         }
     }
 
+    /**
+     * @param string $query
+     * @return array|bool
+     */
     public function getAll($query)
     {
         return $this->rawQuery($query);
     }
 
+    /**
+     * @param string $query
+     * @return bool
+     */
     public function getOne($query)
     {
         $res = $this->rawQuery($query);
@@ -65,12 +77,24 @@ class Db
         }
     }
 
+    /**
+     * @param int $id
+     * @param string $table
+     * @return bool
+     */
+
     public function getFromId($id, $table)
     {
         $query = "SELECT * FROM `$table` WHERE id = $id";
         return $this->getOne($query);
     }
 
+    /**
+     * @param string $field
+     * @param string|integer $value
+     * @param string $table
+     * @return array|bool
+     */
     public function getByField($field, $value, $table)
     {
         $query = "SELECT * FROM `$table` WHERE ";
@@ -82,6 +106,12 @@ class Db
         return $this->rawQuery($query);
     }
 
+    /**
+     * Проверяет существуют ли данные в таблице
+     * @param array $data
+     * @param string $table
+     * @return bool|int|string
+     */
     public function insert($data, $table)
     {
         if (!empty($data)) {
@@ -111,6 +141,12 @@ class Db
         }
     }
 
+    /**
+     * @param $data array данные которые необходимо обновить
+     * @param $table string
+     * @param $where array
+     * @return array|bool
+     */
     public function update($data, $table, $where)
     {
         if (!empty($data)) {
@@ -142,15 +178,23 @@ class Db
         }
     }
 
+    /**
+     * @param object $result
+     */
     public function free($result)
     {
         mysqli_free_result($result);
     }
 
+
     public function getRow()
     {
     }
 
+    /**
+     * @param object $res
+     * @return array
+     */
     private function getArray($res)
     {
         $arr = [];
@@ -160,18 +204,35 @@ class Db
         return $arr;
     }
 
+    /**
+     * @param string $table
+     * @param int $id
+     * @return array|bool
+     */
     public function queryDelete($table, $id)
     {
         $query = "DELETE FROM `$table` WHERE id=$id";
         return $this->rawQuery($query);
     }
 
+    /**
+     * @param string $table
+     * @param string $field
+     * @param int|string $value
+     * @return array|bool
+     */
     public function queryDeleteByField($table, $field, $value)
     {
         $query = "DELETE FROM `$table` WHERE `$field` = '$value'";
         return $this->rawQuery($query);;
     }
 
+    /**
+     * @param array $where
+     * @param string $table
+     * @param bool $direct
+     * @return mixed
+     */
     public function _isset($where, $table, $direct = false)
     {
         $query = "SELECT COUNT(*) as count FROM `$table` ";
@@ -199,6 +260,15 @@ class Db
         $isset = $this->rawQuery($query);
         return $isset[0]['count'];
     }
+
+
+    /**
+     * @param array $data
+     * @param string $table
+     * @param bool $direct
+     * @return array|bool
+     * Поиск по БД
+     */
     public function getWhere($data, $table, $direct = false){
         $query = "SELECT * FROM `$table` ";
         $query .= " WHERE";
