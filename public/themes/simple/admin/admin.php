@@ -8,25 +8,27 @@
 
 $admin->addMenuItem('test', 'tets', 'Тест', 'test_func');
 
-function test_func(){
+function test_func()
+{
     global $options;
     echo $options->get('title');
 }
 
-$admin->addMenuItem('test3', 'test2', 'Тест2', 'test_func2', 'fa-bell');
+$admin->addMenuItem('test3', 'test2', 'Тест2', 'test_func2', 'fa-bell',true, true);
 //user_login('wwww@mail.ru', '123321');
-function test_func2(){
+function test_func2($app)
+{
     //user_login('wwww@mail.ru', '123321');
-   // add_user_meta(5, 'ghfgdghh', '5577oohjko');
+    // add_user_meta(5, 'ghfgdghh', '5577oohjko');
     //prn(get_user_meta(5, 'ghfgdghh'));
-   // prn(all_meta(5));
-  //  prn(record_getBySlug('privet2'));
-   // prn(record_update('40', ['author' => 2]));
-    prn(record_set(['author' => 5, 'id' => 45]));
-
+    // prn(all_meta(5));
+    //  prn(record_getBySlug('privet2'));
+    // prn(record_update('40', ['author' => 2]));
+    //prn(record_set(['author' => 5, 'id' => 45]));
+    prn($app);
 }
 
-$record->addRecordsType(['title'=> 'Отзывы', 'slug' => 'feedback', 'icon' => 'fa-bell']);
+$record->addRecordsType(['title' => 'Отзывы', 'slug' => 'feedback', 'icon' => 'fa-bell']);
 
 /*$cookie->hook('my_login');
 

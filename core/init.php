@@ -32,6 +32,8 @@ $user = new User();
 
 $core = new Core();
 
+require_once ('App.php');
+
 $rout = new Routing();
 $load = $rout->run();
 if($load == 'admin'){

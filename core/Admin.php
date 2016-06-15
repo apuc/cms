@@ -13,14 +13,16 @@ class Admin
     public $hooks = [];
     public $slug;
     private $core;
+    private $app;
 
     function __construct()
     {
         $this->slug = $this->getSlug();
         $this->core = new Core();
+        $this->app = new App();
     }
 
-    public function addMenuItem($title, $slug, $name, $func_name, $icon = 'fa-book', $show = true)
+    public function addMenuItem($title, $slug, $name, $func_name, $icon = 'fa-book', $show = true, $app = false)
     {
         $this->menu_items[] = [
             'title' => $title,
@@ -28,11 +30,12 @@ class Admin
             'name' => $name,
             'func_name' => $func_name,
             'icon' => $icon,
-            'show' => $show
+            'show' => $show,
+            'app' => $app,
         ];
     }
 
-    public function addMenuRecord($title, $slug, $name, $icon = 'fa-book', $show = true)
+    public function addMenuRecord($title, $slug, $name, $icon = 'fa-book', $show = true, $app = false)
     {
         $this->menu_items[] = [
             'title' => $title,
@@ -40,7 +43,8 @@ class Admin
             'name' => $name,
             'icon' => $icon,
             'record_type' => 'record',
-            'show' => $show
+            'show' => $show,
+            'app' => $app,
         ];
     }
 
@@ -59,10 +63,15 @@ class Admin
         foreach ($this->menu_items as $item) {
             if ($this->slug == $item['slug']) {
                 if(isset($item['record_type'])){
-                    render_admin('/admin_lte/views/record_form.php', ['item' => $item, 'core' => $this->core]);
+                    render_admin('/admin_lte/views/record_form.php', ['item' => $item, 'core' => $this->core, 'app' => $this->app]);
                 }
                 else{
-                    call_user_func($item['func_name']);
+                    if($item['app']){
+                        call_user_func($item['func_name'],$this->app);
+                    }
+                    else {
+                        call_user_func($item['func_name']);
+                    }
                 }
             }
         }
