@@ -14,7 +14,7 @@ function test_func()
     echo $options->get('title');
 }
 
-$admin->addMenuItem('test3', 'test2', 'Тест2', 'test_func2', 'fa-bell',true, true);
+$admin->addMenuItem('test3', 'test2', 'Тест2', 'test_func2', 'fa-bell', true, true);
 //user_login('wwww@mail.ru', '123321');
 function test_func2($app)
 {
@@ -24,8 +24,10 @@ function test_func2($app)
     // prn(all_meta(5));
     //  prn(record_getBySlug('privet2'));
     // prn(record_update('40', ['author' => 2]));
-    //prn(record_set(['author' => 5, 'id' => 45]));
-    prn($app);
+    //prn(record_meta_add(1, '3215', '000gy'));
+    //prn(record_meta_all_meta(1));
+    prn(record_meta_set(2, 'cxzc', '4oiuynhtgrvf'));
+
 }
 
 $record->addRecordsType(['title' => 'Отзывы', 'slug' => 'feedback', 'icon' => 'fa-bell']);
