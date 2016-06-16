@@ -49,3 +49,7 @@ function logout(){
     global $user;
     $user->logout();
 }
+function user_get_all($where=[]){
+    global $user;
+    return $user->get_all($where);
+}

@@ -187,4 +187,13 @@ class User
         cookie_set('user_hash', '');
         cookie_set('ip', '');
     }
+
+    public function get_all($where = [])
+    {
+        if (empty($where)) {
+            return $this->core->db->getAll("SELECT * FROM " . $this->core->config->db()['suffix'] . "user");
+        } else {
+            return $this->core->db->getWhere($where, $this->core->config->db()['suffix'] . "user");
+        }
+    }
 }

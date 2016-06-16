@@ -13,3 +13,7 @@ function config_routing($key){
     global $core;
     return $core->config->routing()[$key];
 }
+function config_user($key){
+    global $core;
+    return $core->config->user()[$key];
+}

@@ -16,7 +16,8 @@ class AdminConfig
                 'options',
                 'register',
                 'auth',
-                'record'
+                'record',
+                'rules'
             ]
         ];
     }
