@@ -20,6 +20,7 @@ include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/admin/admin.p
 
 $record->registerRecordType();
 $cookie->set_all_cookie();
+$admin->sortMenu();
 
 if($user->current_user){
     include ('skins/admin_lte/index.php');

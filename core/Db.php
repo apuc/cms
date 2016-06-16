@@ -407,6 +407,5 @@ class Db
     {
         $this->query .= $join . " JOIN  `$table` ON  $param";
         return $this;
-
     }
 }

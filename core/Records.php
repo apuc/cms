@@ -88,6 +88,8 @@ class Records
             'title' => $args['title'],
             'slug' => $args['slug'],
             'icon' => $args['icon'],
+            'rule' => (isset($args['rule'])) ? $args['rule'] : ['admin'],
+            'order' => (isset($args['order'])) ? $args['order'] : 5,
         ];
     }
 
@@ -95,7 +97,7 @@ class Records
     {
         global $admin;
         foreach ($this->records_types as $item) {
-            $admin->addMenuRecord($item['title'], $item['slug'], $item['title'], $item['icon']);
+            $admin->addMenuRecord($item['title'], $item['slug'], $item['rule'], $item['order'] , $item['icon']);
 
         }
     }

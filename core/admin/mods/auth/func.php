@@ -5,7 +5,7 @@
  * Date: 10.06.2016
  * Time: 12:07
  */
-$admin->addMenuItem('Авторизация', 'auth', 'Авторизация', 'auth_func', 'fa-arrow-circle-o-right ');
+$admin->addMenuItem('Авторизация', 'auth', 'auth_func', ['admin'], 2, 'fa-arrow-circle-o-right ');
 function auth_func()
 {
     render_admin('/admin_lte/views/auth_form.php', []);

@@ -7,10 +7,10 @@
  *
  */
 
-$admin->addMenuRecord('Записи', 'record', 'Записи', 'fa-comment');
+$admin->addMenuRecord('Записи', 'record', ['admin', 'user'], 1, 'fa-comment');
 
 
-$admin->addMenuItem('Добавить запись', 'add_record', 'Добавить запись', 'admin_add_record', '', false, true);
+$admin->addMenuItem('Добавить запись', 'add_record', 'admin_add_record', ['admin'], 1, '', false, true);
 
 function admin_add_record($app) {
     prn($app->record_meta->get(2, 'cxzc'));

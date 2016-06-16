@@ -115,7 +115,7 @@
                 <ul class="sidebar-menu">
                     <li class="header">Меню</li>
                     <?php foreach ($admin->getMenuItems() as $item): ?>
-                        <?php if ($item['show']): ?>
+                        <?php if ($item['show'] && in_array($user->get_rule(), $item['rule'])): ?>
                             <li class="<?= ($admin->getSlug() == $item['slug']) ? 'active' : '' ?>">
                                 <a href="/<?= $config->routing()['admin-panel'] . '/' . $item['slug'] ?>">
                                     <i class="fa <?= $item['icon'] ?>"></i> <span><?= $item['title'] ?></span>

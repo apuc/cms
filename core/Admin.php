@@ -22,26 +22,28 @@ class Admin
         $this->app = new App();
     }
 
-    public function addMenuItem($title, $slug, $name, $func_name, $icon = 'fa-book', $show = true, $app = false)
+    public function addMenuItem($title, $slug, $func_name, $rule, $order, $icon = 'fa-book', $show = true, $app = false)
     {
         $this->menu_items[] = [
             'title' => $title,
             'slug' => $slug,
-            'name' => $name,
             'func_name' => $func_name,
             'icon' => $icon,
             'show' => $show,
+            'rule' => $rule,
+            'order' => $order,
             'app' => $app,
         ];
     }
 
-    public function addMenuRecord($title, $slug, $name, $icon = 'fa-book', $show = true, $app = false)
+    public function addMenuRecord($title, $slug, $rule, $order, $icon = 'fa-book', $show = true, $app = false)
     {
         $this->menu_items[] = [
             'title' => $title,
             'slug' => $slug,
-            'name' => $name,
             'icon' => $icon,
+            'rule' => $rule,
+            'order' => $order,
             'record_type' => 'record',
             'show' => $show,
             'app' => $app,
@@ -94,5 +96,13 @@ class Admin
     {
         $uri = explode('/', $_SERVER['REQUEST_URI']);
         return $uri[2];
+    }
+
+    public function sortMenu(){
+        $order = [];
+        foreach($this->menu_items as $key => $item){
+            $order[$key] = $item['order'];
+        }
+        array_multisort($order, SORT_NUMERIC, $this->menu_items);
     }
 }
