@@ -219,7 +219,9 @@ class User
     public function test(){
         $this->core->db
             ->find($this->core->config->db()['suffix'] . "user", '*')
-            ->where(['id'=>5]);
+            ->where(['id'=>5])
+            ->orWhere(['name' => "Артем"], 'AND' );
         return $this->core->db->query;
     }
+
 }
