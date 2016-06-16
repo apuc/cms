@@ -53,3 +53,7 @@ function user_get_all($where=[]){
     global $user;
     return $user->get_all($where);
 }
+function user_get_rule($id = false){
+    global $user;
+    return $user->get_rule($id);
+}
