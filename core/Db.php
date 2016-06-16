@@ -14,6 +14,7 @@ class Db
     private $defaults;
     public $query;
     public $table;
+    public $count = 0;
 
     function __construct($data = [])
     {
@@ -38,10 +39,12 @@ class Db
         $start = microtime(TRUE);
         $result = mysqli_query($this->connect, $query);
         $timer = microtime(TRUE) - $start;
+        $this->count++;
         $this->stat[] = array(
             'query' => $query,
             'start' => $start,
             'timer' => $timer,
+            'count' => $this->count
         );
         if ($result) {
             if (is_object($result)) {
