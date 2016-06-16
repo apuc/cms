@@ -297,6 +297,11 @@ class Db
         return $res;
     }
 
+    /**
+     * @param string $table
+     * @param $select
+     * @return $this
+     */
     public function find($table, $select)
     {
         $this->table = $table;
@@ -304,6 +309,12 @@ class Db
         return $this;
     }
 
+    /**
+     * @param array $data
+     * @param string $logics
+     * @param bool $direct
+     * @return $this
+     */
     public function where($data, $logics = 'AND', $direct = false)
     {
         $this->query .= " WHERE";
@@ -329,6 +340,12 @@ class Db
         return $this;
     }
 
+    /**
+     * @param array $data
+     * @param string $logics
+     * @param bool $direct
+     * @return $this
+     */
     public function andWhere($data, $logics = 'AND', $direct = false)
     {
         $this->query .= " AND (" ;
@@ -355,6 +372,12 @@ class Db
         return $this;
     }
 
+    /**
+     * @param array $data
+     * @param string $logics
+     * @param bool $direct
+     * @return $this
+     */
     public function orWhere($data, $logics = 'OR', $direct = false)
     {
         $this->query .= " OR (" ;
@@ -380,6 +403,12 @@ class Db
         $this->query .=")";
         return $this;
     }
+
+    /**
+     * @param int $count
+     * @param bool $offset
+     * @return $this
+     */
     public function limit($count, $offset = false)
     {
         if ($offset) {
@@ -390,22 +419,51 @@ class Db
         return $this;
     }
 
+    /**
+     * @param string $order
+     * @return $this
+     */
     public function orderBy($order)
     {
         $this->query .= " ORDER BY " . $order . " ";
         return $this;
     }
 
+    /**
+     * @param string $group
+     * @return $this
+     */
     public function groupBy($group)
     {
         $this->query .= " GROUP BY " . $group . " ";
         return $this;
     }
 
-
-    public function join($table, $param, $join)
+    /**
+     * @param string $table
+     * @param string $param
+     * @param string $join
+     * @return $this
+     */
+    public function join($table, $param, $join = "")
     {
-        $this->query .= $join . " JOIN  `$table` ON  $param";
+        $this->query .= $join . " JOIN  $table ON  $param";
         return $this;
+    }
+
+    /**
+     * @return array|bool
+     */
+    public function all()
+    {
+        return $this->rawQuery($this->query);
+    }
+
+    /**
+     * @return bool
+     */
+    public function one()
+    {
+        return $this->getOne($this->query);
     }
 }
