@@ -26,7 +26,8 @@ function test_func2($app)
     // prn(record_update('40', ['author' => 2]));
     //prn(record_meta_add(1, '3215', '000gy'));
     //prn(record_meta_all_meta(1));
-    prn(user_get_all());
+   // prn(user_get_all());
+   prn(test());
 
 }
 

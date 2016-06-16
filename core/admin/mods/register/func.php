@@ -20,21 +20,18 @@ function register_func()
         ) {
 
             $args = [
-                'login'=> $_POST['login'],
-                'email'=> $_POST['email'],
-                'pass'=> $_POST['pass'],
-                'meta'=> [
-                    'name'=> $_POST['name'],
+                'login' => $_POST['login'],
+                'email' => $_POST['email'],
+                'pass' => $_POST['pass'],
+                'meta' => [
+                    'name' => $_POST['name'],
                 ]
             ];
-            $rule = $core->db->getByField('name',config_user('rule'),$core->config->db()['suffix'] . 'rule')[0]['id'];
-            //prn($rule);
             $res = user_add($args);
-            $core->db->insert(['rule_id' => $rule, 'user_id' => $res], $core->config->db()['suffix'] . 'assignment');
-            if(is_array($res)){
+            if (is_array($res)) {
                 render_admin('/admin_lte/views/alert_error.php', [
                     'title' => $res['error_msg'],
-                    'msg' => 'Код ошибки '.$res['error_code'],
+                    'msg' => 'Код ошибки ' . $res['error_code'],
                 ]);
             }
         } else {
@@ -45,6 +42,5 @@ function register_func()
         }
     }
     render_admin('/admin_lte/views/register_form.php', []);
-
 }
 

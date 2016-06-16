@@ -12,6 +12,8 @@ class Db
     private $settings;
     private $connect;
     private $defaults;
+    public $query;
+    public $table;
 
     function __construct($data = [])
     {
@@ -244,10 +246,9 @@ class Db
                 if (is_int($v)) {
                     $query .= " $k = $v";
                 } else {
-                    if($direct){
+                    if ($direct) {
                         $query .= " $k LIKE '$v'";
-                    }
-                    else {
+                    } else {
                         $query .= " $k LIKE '%$v%'";
                     }
                 }
@@ -269,7 +270,8 @@ class Db
      * @return array|bool
      * Поиск по БД
      */
-    public function getWhere($data, $table, $direct = false){
+    public function getWhere($data, $table, $direct = false)
+    {
         $query = "SELECT * FROM `$table` ";
         $query .= " WHERE";
         foreach ($data as $k => $v) {
@@ -279,10 +281,9 @@ class Db
                 if (is_int($v)) {
                     $query .= " $k = $v";
                 } else {
-                    if($direct){
+                    if ($direct) {
                         $query .= " $k LIKE '$v'";
-                    }
-                    else {
+                    } else {
                         $query .= " $k LIKE '%$v%'";
                     }
                 }
@@ -295,4 +296,36 @@ class Db
         //prn($res);
         return $res;
     }
+
+    public function find($table, $select)
+    {
+        $this->table = $table;
+        $this->query = "SELECT " . $select . " FROM `$table`";
+        return $this;
+    }
+
+    public function where($data, $direct = false)
+    {
+        $this->query .= " WHERE";
+        foreach ($data as $k => $v) {
+            if ($k == 'id') {
+                $this->query .= " $k = $v";
+            } else {
+                if (is_int($v)) {
+                    $this->query .= " $k = $v";
+                } else {
+                    if ($direct) {
+                        $this->query .= " $k LIKE '$v'";
+                    } else {
+                        $this->query .= " $k LIKE '%$v%'";
+                    }
+                }
+            }
+            $this->query .= " AND";
+        }
+        //var_dump($query);
+        $this->query = substr($this->query, 0, -3);
+        return $this;
+    }
+
 }

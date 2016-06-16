@@ -14,4 +14,5 @@ $admin->addMenuItem('Добавить запись', 'add_record', 'Добави
 
 function admin_add_record($app) {
     prn($app->record_meta->get(2, 'cxzc'));
+
 }

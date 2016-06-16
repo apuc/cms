@@ -54,6 +54,8 @@ class User
         $data['user_ip'] = $this->getRealIpAddr();
 
         $id = $this->core->db->insert($data, $this->core->config->db()['suffix'] . 'user');
+        $rule = $this->core->db->getByField('name', config_user('rule'), $this->core->config->db()['suffix'] . 'rule')[0]['id'];
+        $this->core->db->insert(['rule_id' => $rule, 'user_id' => $id], $this->core->config->db()['suffix'] . 'assignment');
         foreach ($args['meta'] as $k => $meta) {
             if ($k != 'name' and $k != 'last_name') {
                 $this->core->db->insert([
@@ -195,5 +197,29 @@ class User
         } else {
             return $this->core->db->getWhere($where, $this->core->config->db()['suffix'] . "user");
         }
+    }
+
+    public function get_rule($id = false)
+    {
+        if($id){
+            $assign = $this->core->db->getByField('user_id', $id, $this->core->config->db()['suffix'] . "assignment");
+        }
+        else{
+            $assign = $this->core->db->getByField('user_id', cookie_get('id'), $this->core->config->db()['suffix'] . "assignment");
+        }
+        if(empty($assign)){
+            return false;
+        }
+        else{
+            return $this->core->db->getFromId($assign[0]['rule_id'], $this->core->config->db()['suffix'] . "rule")['name'];
+        }
+
+    }
+
+    public function test(){
+        $this->core->db
+            ->find($this->core->config->db()['suffix'] . "user", '*')
+            ->where(['id'=>5]);
+        return $this->core->db->query;
     }
 }

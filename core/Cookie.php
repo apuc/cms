@@ -10,6 +10,10 @@ class Cookie
         return setcookie($name, $value, time() + $time, "/", $_SERVER['HTTP_HOST']);
     }
 
+    /**
+     * @param string $name
+     * @return bool
+     */
     public function get($name)
     {
         if (isset($_COOKIE[$name])) {
