@@ -7,7 +7,7 @@
  *
  */
 
-$admin->addMenuItem('Опции', 'options', 'Опции', 'admin_options', 'fa-cog');
+$admin->addMenuItem('Опции', 'options', 'admin_options', ['admin'], 1, 'fa-cog');
 
 function admin_options(){
     if(isset($_POST['title'])){

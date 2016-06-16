@@ -57,8 +57,3 @@ function user_get_rule($id = false){
     global $user;
     return $user->get_rule($id);
 }
-
-function test(){
-    global $user;
-    return $user->test();
-}

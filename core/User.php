@@ -216,10 +216,4 @@ class User
 
     }
 
-    public function test(){
-        $this->core->db
-            ->find($this->core->config->db()['suffix'] . "user", '*')
-            ->where(['id'=>5]);
-        return $this->core->db->query;
-    }
 }

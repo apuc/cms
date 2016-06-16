@@ -6,7 +6,7 @@
  * Time: 15:10
  */
 
-$admin->addMenuItem('test', 'tets', 'Тест', 'test_func');
+$admin->addMenuItem('test', 'tets', 'test_func', ['admin'], 6);
 
 function test_func()
 {
@@ -14,7 +14,7 @@ function test_func()
     echo $options->get('title');
 }
 
-$admin->addMenuItem('test3', 'test2', 'Тест2', 'test_func2', 'fa-bell', true, true);
+$admin->addMenuItem('test3', 'test2', 'test_func2',['admin'], 6, 'fa-bell', true, true);
 //user_login('wwww@mail.ru', '123321');
 function test_func2($app)
 {
@@ -27,11 +27,11 @@ function test_func2($app)
     //prn(record_meta_add(1, '3215', '000gy'));
     //prn(record_meta_all_meta(1));
    // prn(user_get_all());
-   prn(test());
+   prn(123);
 
 }
 
-$record->addRecordsType(['title' => 'Отзывы', 'slug' => 'feedback', 'icon' => 'fa-bell']);
+$record->addRecordsType(['title' => 'Отзывы', 'slug' => 'feedback', 'icon' => 'fa-bell', 'order' => 5]);
 
 /*$cookie->hook('my_login');
 

@@ -6,7 +6,7 @@
  * Time: 11:35
  */
 
-$admin->addMenuItem('Регистрация', 'register', 'Регистрация', 'register_func', 'fa-registered');
+$admin->addMenuItem('Регистрация', 'register', 'register_func', ['admin'], 2, 'fa-registered');
 
 function register_func()
 {

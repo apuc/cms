@@ -8,9 +8,9 @@
 /**
  * @
  */
-$admin->addMenuItem('Права пользователя', 'rules', 'Права пользователя', 'rules_func', 'fa-key', true, true);
-$admin->addMenuItem('Добавить роль', 'add_rule', 'Добавить роль', 'add_rules_func', 'fa-key', false, true);
-$admin->addMenuItem('Присвоить роль', 'add_assignment', 'Присвоить роль', 'assignment_func', 'fa-key', false, true);
+$admin->addMenuItem('Права пользователя', 'rules', 'rules_func', ['admin'], 1, 'fa-key', true, true);
+$admin->addMenuItem('Добавить роль', 'add_rule', 'add_rules_func', ['admin'], 1, 'fa-key', false, true);
+$admin->addMenuItem('Присвоить роль', 'add_assignment', 'assignment_func', ['admin'], 1, 'fa-key', false, true);
 
 function rules_func($app)
 {
