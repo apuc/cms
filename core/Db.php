@@ -304,7 +304,7 @@ class Db
         return $this;
     }
 
-    public function where($data, $direct = false)
+    public function where($data, $logics = 'AND', $direct = false)
     {
         $this->query .= " WHERE";
         foreach ($data as $k => $v) {
@@ -321,11 +321,91 @@ class Db
                     }
                 }
             }
-            $this->query .= " AND";
+            $this->query .= " " . $logics;
+
         }
         //var_dump($query);
         $this->query = substr($this->query, 0, -3);
         return $this;
     }
 
+    public function andWhere($data, $logics = 'AND', $direct = false)
+    {
+        $this->query .= " AND (" ;
+        foreach ($data as $k => $v) {
+            if ($k == 'id') {
+                $this->query .= " $k = $v";
+            } else {
+                if (is_int($v)) {
+                    $this->query .= " $k = $v";
+                } else {
+                    if ($direct) {
+                        $this->query .= " $k LIKE '$v'";
+                    } else {
+                        $this->query .= " $k LIKE '%$v%'";
+                    }
+                }
+            }
+            $this->query .= " " . $logics;
+
+        }
+        //var_dump($query);
+        $this->query = substr($this->query, 0, -3);
+        $this->query .=")";
+        return $this;
+    }
+
+    public function orWhere($data, $logics = 'OR', $direct = false)
+    {
+        $this->query .= " OR (" ;
+        foreach ($data as $k => $v) {
+            if ($k == 'id') {
+                $this->query .= " $k = $v";
+            } else {
+                if (is_int($v)) {
+                    $this->query .= " $k = $v";
+                } else {
+                    if ($direct) {
+                        $this->query .= " $k LIKE '$v'";
+                    } else {
+                        $this->query .= " $k LIKE '%$v%'";
+                    }
+                }
+            }
+            $this->query .= " " . $logics;
+
+        }
+        //var_dump($query);
+        $this->query = substr($this->query, 0, -3);
+        $this->query .=")";
+        return $this;
+    }
+    public function limit($count, $offset = false)
+    {
+        if ($offset) {
+            $this->query .= "LIMIT $offset , $count ";
+        } else {
+            $this->query .= "LIMIT $count ";
+        }
+        return $this;
+    }
+
+    public function orderBy($order)
+    {
+        $this->query .= " ORDER BY " . $order . " ";
+        return $this;
+    }
+
+    public function groupBy($group)
+    {
+        $this->query .= " GROUP BY " . $group . " ";
+        return $this;
+    }
+
+
+    public function join($table, $param, $join)
+    {
+        $this->query .= $join . " JOIN  `$table` ON  $param";
+        return $this;
+    }
 }
