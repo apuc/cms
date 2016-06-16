@@ -79,6 +79,6 @@ function assignment_func($app)
                                                  JOIN `k_rule` ON `k_rule`.`id` = `k_assignment`.`rule_id`"),
         ]);
     }
-                                                                            
+
 }
 
