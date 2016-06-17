@@ -57,3 +57,15 @@ function user_get_rule($id = false){
     global $user;
     return $user->get_rule($id);
 }
+function user_update($id, $data){
+    global $user;
+    return $user->update($id, $data);
+}
+function user_get_info($id = false){
+    global $user;
+    return $user->get_info($id);
+}
+function user_update_pass($pass_old, $path_new, $id = false){
+    global $user;
+    return $user->update_pass($pass_old, $path_new, $id);
+}

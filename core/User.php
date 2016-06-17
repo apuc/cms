@@ -11,6 +11,7 @@ class User
     private $core;
     public $current_user;
 
+
     function __construct()
     {
         $this->core = new Core();
@@ -22,6 +23,10 @@ class User
         }
     }
 
+    /**
+     * @param array $args
+     * @return array|bool|int|string
+     */
     public function add($args)
     {
 
@@ -68,6 +73,10 @@ class User
         return $id;
     }
 
+    /**
+     * @param int $length
+     * @return string
+     */
     public function generateCode($length = 6)
     {
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHI JKLMNOPRQSTUVWXYZ0123456789";
@@ -79,6 +88,9 @@ class User
         return $code;
     }
 
+    /**
+     * @return mixed
+     */
     public function getRealIpAddr()
     {
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -91,6 +103,10 @@ class User
         return $ip;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function get_by_id($id)
     {
         return $this->core->db->getFromId($id, $this->core->config->db()['suffix'] . 'user');
@@ -122,7 +138,11 @@ class User
 
     }
 
-
+    /**
+     * @param string $login
+     * @param string $pass
+     * @return array|bool
+     */
     public function login($login, $pass)
     {
         $user = $this->get($login, $pass);
@@ -142,6 +162,12 @@ class User
         }
     }
 
+    /**
+     * @param int $user_id
+     * @param $meta_key
+     * @param string $meta_value
+     * @return array|bool|int|string
+     */
     public function add_user_meta($user_id, $meta_key, $meta_value)
     {
         if ($this->core->db->_isset(['user_id' => $user_id, 'meta_key' => $meta_key], $this->core->config->db()['suffix'] . 'usermeta') > 0) {
@@ -156,16 +182,28 @@ class User
 
     }
 
+    /**
+     * @param int $user_id
+     * @param $meta_key
+     * @return mixed
+     */
     public function get_user_meta($user_id, $meta_key)
     {
         return $this->core->db->getWhere(['user_id' => $user_id, 'meta_key' => $meta_key], $this->core->config->db()['suffix'] . 'usermeta')[0];
     }
 
+    /**
+     * @param int $user_id
+     * @return array|bool
+     */
     public function all_meta($user_id)
     {
         return $this->core->db->getWhere(['user_id' => $user_id], $this->core->config->db()['suffix'] . 'usermeta');
     }
 
+    /**
+     * @return mixed
+     */
     public function get_current()
     {
         $id = cookie_get('id');
@@ -173,16 +211,26 @@ class User
         return $user[0];
     }
 
+    /**
+     * @return mixed
+     */
     public function get_login()
     {
         return $this->current_user['login'];
     }
 
+    /**
+     * @param $format
+     * @return bool|string
+     */
     public function get_dt_add($format)
     {
         return date($format, $this->current_user['dt_add']);
     }
 
+    /**
+     * Удаляет куки
+     */
     public function logout()
     {
         cookie_set('id', '');
@@ -190,6 +238,10 @@ class User
         cookie_set('ip', '');
     }
 
+    /**
+     * @param array $where
+     * @return array|bool
+     */
     public function get_all($where = [])
     {
         if (empty($where)) {
@@ -199,29 +251,88 @@ class User
         }
     }
 
+    /**
+     * @param bool $id
+     * @return bool
+     */
     public function get_rule($id = false)
     {
-        if($id){
+        if ($id) {
             $assign = $this->core->db->getByField('user_id', $id, $this->core->config->db()['suffix'] . "assignment");
-        }
-        else{
+        } else {
             $assign = $this->core->db->getByField('user_id', cookie_get('id'), $this->core->config->db()['suffix'] . "assignment");
         }
-        if(empty($assign)){
+        if (empty($assign)) {
             return false;
-        }
-        else{
+        } else {
             return $this->core->db->getFromId($assign[0]['rule_id'], $this->core->config->db()['suffix'] . "rule")['name'];
         }
 
     }
 
-    public function test(){
+    /**
+     * @return mixed
+     */
+    public function test()
+    {
         $this->core->db
             ->find($this->core->config->db()['suffix'] . "user", '*')
-            ->where(['id'=>5])
-            ->orWhere(['name' => "Артем"], 'AND' );
+            ->where(['id' => 5])
+            ->orWhere(['name' => "Артем"], 'AND');
         return $this->core->db->query;
+    }
+
+    /**
+     * @param int $id
+     * @param array $data
+     * @return bool
+     */
+    public function update($id, $data)
+    {
+        if ($this->get_by_id($id)) {
+            foreach ($data as $key => $item) {
+                if ($key == 'name' || $key == 'last_name' || $key == 'photo') {
+                    $this->core->db->update([$key => $item], db_table('user'), ['id' => $id]);
+                } else {
+                    $this->add_user_meta($id, $key, $item);
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param bool $id
+     * @return mixed
+     */
+    public function get_info($id = false)
+    {
+        if (!$id) {
+            $id = cookie_get('id');
+        }
+        $arr = $this->all_meta($id);
+        $arr2 = $this->get_all(['id' => $id]);
+        $array = $arr2[0];
+        foreach ($arr as $item) {
+            $array[$item['meta_key']] = $item['meta_value'];
+        }
+        return $array;
+
+    }
+
+    public function update_pass($pass_old, $pass_new, $id = false)
+    {
+
+     $id = $this->get_by_id($id);
+        if($id){
+        return $this->core->db->update(['pass' => $pass_new], $this->core->config->db()['suffix'] . "user",['pass' => $pass_old]);
+        }
+        else{
+            $id = cookie_get('id');
+       return $this->core->db->update(['pass' => $pass_new], $this->core->config->db()['suffix'] . "user",['pass' => $pass_old]);
+        }
+
     }
 
 }

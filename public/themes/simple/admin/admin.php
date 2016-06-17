@@ -27,7 +27,7 @@ function test_func2($app)
     //prn(record_meta_add(1, '3215', '000gy'));
     //prn(record_meta_all_meta(1));
    // prn(user_get_all());
-   prn(123);
+   prn(user_update_pass(123321, 55555,5));
 
 }
 
