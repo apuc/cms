@@ -14,10 +14,18 @@ $admin->addMenuItem('Изменить пароль', 'update_pass', 'update_pass
 
 function update_pass_func($app)
 {
-
-    render_admin('/admin_lte/views/update_pass.php', [
-        //'up_path' => $up_path,
-    ]);
+    if (isset($_GET['pass'])) {
+        $update = user_get_by_id($_GET['pass']);
+        render_admin('/admin_lte/views/update_pass.php', [
+            'update' => $update,
+        ]);
+    }
+    if (isset($_POST['submit'])) {
+        $id = $_POST['user_id'];;
+        $pass_new = $_POST['pass_new'];
+        $pass_old = $_POST['pass_old'];
+        $update = user_update_pass($pass_old, $pass_new, $id);
+    }
 }
 
 function profile_func($app)
@@ -31,9 +39,7 @@ function profile_func($app)
 function profile_edit_func($app)
 {
     if (isset($_GET['edit'])) {
-
         $prof_ed = user_get_by_id($_GET['edit']);
-
         render_admin('/admin_lte/views/profile_edit_form.php', [
             'prof_ed' => $prof_ed,
         ]);
@@ -42,7 +48,6 @@ function profile_edit_func($app)
         $id = $_POST['user_id'];
         unset($_POST['user_id']);
         unset($_POST['save']);
-
         user_update($id, $_POST);
         $prof_ed = user_get_by_id($id);
         render_admin('/admin_lte/views/profile_table.php', [

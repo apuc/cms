@@ -65,7 +65,12 @@ class Admin
         foreach ($this->menu_items as $item) {
             if ($this->slug == $item['slug']) {
                 if(isset($item['record_type'])){
-                    render_admin('/admin_lte/views/record_form.php', ['item' => $item, 'core' => $this->core, 'app' => $this->app]);
+                    render_admin('/admin_lte/views/record_form.php', [
+                        'item' => $item,
+                        'core' => $this->core,
+                        'app' => $this->app,
+                        'record' => $this->app->record->get_by_type($item['slug']),
+                    ]);
                 }
                 else{
                     if($item['app']){

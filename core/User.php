@@ -219,6 +219,13 @@ class User
         return $this->current_user['login'];
     }
 
+    public function get_login_by_id($id)
+    {
+        $user = $this->get_by_id($id);
+        return $user['login'];
+
+    }
+
     /**
      * @param $format
      * @return bool|string
@@ -323,16 +330,18 @@ class User
 
     public function update_pass($pass_old, $pass_new, $id = false)
     {
+        $id = ($id) ? $id : cookie_get('id');
+        $user = $this->get_by_id($id);
+        if ($user['pass'] == md5(md5($pass_old))) {
+            return $this->set_pass($id, $pass_new);
 
-     $id = $this->get_by_id($id);
-        if($id){
-        return $this->core->db->update(['pass' => $pass_new], $this->core->config->db()['suffix'] . "user",['pass' => $pass_old]);
         }
-        else{
-            $id = cookie_get('id');
-       return $this->core->db->update(['pass' => $pass_new], $this->core->config->db()['suffix'] . "user",['pass' => $pass_old]);
-        }
-
+        return false;
     }
 
+    public function set_pass($id, $pass_new)
+    {
+        $pass_new = md5(md5($pass_new));
+        return $this->core->db->update(['pass' => $pass_new], $this->core->config->db()['suffix'] . "user", ['id' => $id]);
+    }
 }
