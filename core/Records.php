@@ -86,7 +86,7 @@ class Records
     {
         $this->records_types[] = [
             'title' => $args['title'],
-            'slug' => $args['slug'],
+            'type' => $args['type'],
             'icon' => $args['icon'],
             'rule' => (isset($args['rule'])) ? $args['rule'] : ['admin'],
             'order' => (isset($args['order'])) ? $args['order'] : 5,
@@ -97,7 +97,7 @@ class Records
     {
         global $admin;
         foreach ($this->records_types as $item) {
-            $admin->addMenuRecord($item['title'], $item['slug'], $item['rule'], $item['order'] , $item['icon']);
+            $admin->addMenuRecord($item['title'], $item['type'], $item['rule'], $item['order'] , $item['icon']);
 
         }
     }
@@ -137,5 +137,8 @@ class Records
         return $res;
     }
 
-
+    public function get_by_type($record_type)
+    {
+        return $this->core->db->getByField('type', $record_type, $this->core->config->db()['suffix'] . 'records');
+    }
 }

@@ -28,3 +28,7 @@ function record_set($data){
     global $record;
     return $record->set($data);
 }
+function record_get_by_type($record_type){
+    global $record;
+    return $record->get_by_type($record_type);
+}

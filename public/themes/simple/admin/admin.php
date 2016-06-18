@@ -27,11 +27,14 @@ function test_func2($app)
     //prn(record_meta_add(1, '3215', '000gy'));
     //prn(record_meta_all_meta(1));
    // prn(user_get_all());
-   prn(123);
+    //user_set_pass(5,11111);
+ prn(user_update_pass(11111,888888,5));
+ prn(record_get_by_type('reviews'));
+ prn(record_get_by_type('reviews'));
 
 }
 
-$record->addRecordsType(['title' => 'Отзывы', 'slug' => 'feedback', 'icon' => 'fa-bell', 'order' => 5]);
+$record->addRecordsType(['title' => 'Отзывы', 'type' => 'feedback', 'icon' => 'fa-bell', 'order' => 5]);
 
 /*$cookie->hook('my_login');
 
