@@ -38,7 +38,7 @@
                     <td><?= $item['login'] ?></td>
                     <td><?= $item['rule_name'] ?></td>
                     <td><?= date('d-m-Y', $item['dt_add']) ?></td>
-                    <td><a href="/<?= config_routing('admin-panel') ?>/add_assignment/?assign=<?= $item['id'] ?>"><i class="fa fa-plus" style="color: blue" aria-hidden="true"></i></a></td>
+                    <td><a href="/<?= config_routing('admin-panel') ?>/add_assignment/?assign=<?= $item['user_id'] ?>"><i class="fa fa-plus" style="color: blue" aria-hidden="true"></i></a></td>
                 </tr>
             <?php endforeach; ?>
 

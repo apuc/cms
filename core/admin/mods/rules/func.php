@@ -59,12 +59,12 @@ function assignment_func($app)
         ]);
 
     } elseif (isset($_POST['submit'])) {
-        $app->core->db->queryDeleteByField($app->core->config->db()['suffix'] . "assignment", 'user_id', $_POST['user_id']);
+        $app->core->db->queryDeleteByField(db_table("assignment"), 'user_id', $_POST['user_id']);
         $app->core->db->insert([
             'user_id' => $_POST['user_id'],
             'rule_id' => $_POST['rule'],
             'dt_add' => time(),
-        ],$app->core->config->db()['suffix'] . "assignment");
+        ],db_table("assignment"));
         render_admin('/admin_lte/views/alert_success.php', [
             'title' => 'Роль успешно добавлена пользователю',
             'msg' => '<a href="/' . config_routing('admin-panel') . '/rules">Список ролей</a>',
@@ -74,11 +74,13 @@ function assignment_func($app)
         ]);
     } else {
         render_admin('/admin_lte/views/assignment_table.php', [
-            'users' => $app->core->db->rawQuery("SELECT `k_user`.`id` AS user_id, `k_user`.`name`, email, login, `k_user`.`dt_add`, `k_rule`.`name` AS rule_name FROM `k_user`
-                                                 JOIN `k_assignment` ON `k_assignment`.`user_id` = `k_user`.`id`
-                                                 JOIN `k_rule` ON `k_rule`.`id` = `k_assignment`.`rule_id`"),
+            'users' => $app->core->db->find(db_table("user"),
+                "`k_user`.`id` AS user_id, `k_user`.`name`, email, login, `k_user`.`dt_add`, `k_rule`.`name` AS rule_name ")
+                ->join('`k_assignment`','`k_assignment`.`user_id` = `k_user`.`id`')
+                ->join('`k_rule`', '`k_rule`.`id` = `k_assignment`.`rule_id`')
+                ->all(),
         ]);
+
     }
-                                                                            
 }
 

@@ -6,7 +6,7 @@
  * Time: 15:10
  */
 
-$admin->addMenuItem('test', 'tets', 'test_func', ['admin'], 6);
+$admin->addMenuItem('test', 'tets', 'test_func', ['admin', 'user'], 6);
 
 function test_func()
 {
