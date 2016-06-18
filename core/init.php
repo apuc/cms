@@ -14,6 +14,7 @@ require_once ('Options.php');
 require_once ('Routing.php');
 require_once ('Records.php');
 require_once ('RecordMeta.php');
+require_once ('Head.php');
 
 
 $cookie = new Cookie();
@@ -21,6 +22,7 @@ $config = new Config();
 $options = new Options();
 $record = new Records();
 $record_meta = new RecordMeta();
+$header = new Head();
 
 require_once ('functions/config.php');
 require_once ('functions/cookie.php');

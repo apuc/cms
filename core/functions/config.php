@@ -34,3 +34,8 @@ function db_table($name)
     global $core;
     return $core->config->db()['suffix'] . $name;
 }
+
+function theme_dir_uri(){
+    global $options;
+    return "/public/themes/" . $options->get('theme') . "/";
+}

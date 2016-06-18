@@ -9,6 +9,7 @@ RewriteCond %{REQUEST_FILENAME} !-l
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 # Из папки "DEV" отдавать как есть
+#RewriteCond %{REQUEST_URI} !^.*\.(jpg|css|js|gif|png)$ [NC]
 RewriteCond %{REQUEST_URI} !^/core/admin/skins/admin_lte/plugins/
 RewriteCond %{REQUEST_URI} !^/public/upload/
 RewriteCond %{REQUEST_URI} !^/favicon.ico
