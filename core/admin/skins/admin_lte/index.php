@@ -28,6 +28,10 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/daterangepicker/daterangepicker-bs3.css">
 
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/elFinder/css/elfinder.min.css">
+    <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/elFinder/css/theme.css">
+
     <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/dist/css/style.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet"
@@ -367,8 +371,13 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 
 <!-- AdminLTE for demo purposes -->
+<script src="<?= $admin->getSkinDir() ?>/admin_lte/plugins/elFinder/js/elfinder.min.js"></script>
+<script src="<?= $admin->getSkinDir() ?>/admin_lte/plugins/elFinder/js/i18n/elfinder.ru.js"></script>
+
 <script src="<?= $admin->getSkinDir() ?>/admin_lte/dist/js/demo.js"></script>
+
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+
 <script src="<?= $admin->getSkinDir() ?>/admin_lte/dist/js/script.js"></script>
 </body>
 </html>
