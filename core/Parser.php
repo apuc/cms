@@ -1,6 +1,11 @@
 <?php
 class Parser {
-
+    /**
+     * @param string $tpl
+     * @param array $data
+     * @param bool $view
+     * @return mixed|string
+     */
     public static function parse ($tpl, $data = array(), $view = false) {
         $file = file_get_contents($tpl); // Получаем шаблон
 
@@ -17,6 +22,12 @@ class Parser {
         }
     }
 
+    /**
+     * @param string $tpl
+     * @param array $data
+     * @param bool $view
+     * @return string
+     */
     public static function render($tpl, $data = array(), $view = true){
         if(!empty($data)){
             foreach($data as $k => $v){

@@ -219,6 +219,10 @@ class User
         return $this->current_user['login'];
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function get_login_by_id($id)
     {
         $user = $this->get_by_id($id);
@@ -328,6 +332,13 @@ class User
 
     }
 
+    /**
+     * @param string $pass_old
+     * @param string $pass_new
+     * @param bool $id
+     * @return array|bool
+     */
+
     public function update_pass($pass_old, $pass_new, $id = false)
     {
         $id = ($id) ? $id : cookie_get('id');
@@ -339,6 +350,11 @@ class User
         return false;
     }
 
+    /**
+     * @param int $id
+     * @param string $pass_new
+     * @return array|bool
+     */
     public function set_pass($id, $pass_new)
     {
         $pass_new = md5(md5($pass_new));

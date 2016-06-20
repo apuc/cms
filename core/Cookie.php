@@ -4,6 +4,12 @@ class Cookie
 {
     public $cookie_list = [];
 
+    /**
+     * @param string $name
+     * @param string $value
+     * @param bool $time
+     * @return bool
+     */
     public function set($name, $value, $time = false)
     {
         $time = ($time) ? $time : 3600;
@@ -23,6 +29,12 @@ class Cookie
         }
     }
 
+    /**
+     * @param string $name
+     * @param string $value
+     * @param bool $time
+     * @return array
+     */
     public function add($name, $value, $time = false)
     {
         $this->cookie_list[] = [
@@ -33,6 +45,9 @@ class Cookie
         return $this->cookie_list;
     }
 
+    /**
+     *
+     */
     public function set_all_cookie()
     {
         foreach ($this->cookie_list as $cookie) {
@@ -40,6 +55,9 @@ class Cookie
         }
     }
 
+    /**
+     * @param $handler
+     */
     public function hook($handler)
     {
         call_user_func($handler);

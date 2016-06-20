@@ -22,6 +22,16 @@ class Admin
         $this->app = new App();
     }
 
+    /**
+     * @param string $title
+     * @param string $slug
+     * @param string $func_name
+     * @param string $rule
+     * @param string $order
+     * @param string $icon
+     * @param bool $show
+     * @param bool $app
+     */
     public function addMenuItem($title, $slug, $func_name, $rule, $order, $icon = 'fa-book', $show = true, $app = false)
     {
         $this->menu_items[] = [
@@ -36,6 +46,15 @@ class Admin
         ];
     }
 
+    /**
+     * @param string $title
+     * @param string $slug
+     * @param string $rule
+     * @param string $order
+     * @param string $icon
+     * @param bool $show
+     * @param bool $app
+     */
     public function addMenuRecord($title, $slug, $rule, $order, $icon = 'fa-book', $show = true, $app = false)
     {
         $this->menu_items[] = [
@@ -50,16 +69,25 @@ class Admin
         ];
     }
 
+    /**
+     * @return array
+     */
     public function getMenuItems()
     {
         return $this->menu_items;
     }
 
+    /**
+     * @return string
+     */
     public function getSkinDir()
     {
         return '/core/admin/skins';
     }
 
+    /**
+     *
+     */
     public function content()
     {
         foreach ($this->menu_items as $item) {
@@ -89,6 +117,9 @@ class Admin
 
     }
 
+    /**
+     * @return mixed
+     */
     public function title(){
         foreach ($this->menu_items as $item) {
             if ($this->slug == $item['slug']) {
@@ -97,12 +128,19 @@ class Admin
         }
     }
 
+    /**
+     * Получает название слага
+     * @return mixed
+     */
     public function getSlug()
     {
         $uri = explode('/', $_SERVER['REQUEST_URI']);
         return $uri[2];
     }
 
+    /**
+     * Сортирует меню
+     */
     public function sortMenu(){
         $order = [];
         foreach($this->menu_items as $key => $item){

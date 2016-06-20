@@ -17,6 +17,12 @@ class Head
         $this->core = new Core();
     }
 
+    /**
+     * @param string $name
+     * @param string $url
+     * @param bool $vers
+     * @param bool $body
+     */
     public function addScript($name, $url, $vers = false, $body = false)
     {
         $this->scripts[] = [
@@ -27,6 +33,11 @@ class Head
         ];
     }
 
+    /**
+     * @param string $name
+     * @param string $url
+     * @param bool $vers
+     */
     public function addStyle($name, $url, $vers = false)
     {
         $this->styles[] = [
@@ -36,12 +47,18 @@ class Head
         ];
     }
 
+    /**
+     *
+     */
     public function siteHead()
     {
         $this->printStyle();
         $this->printScriptHead();
     }
 
+    /**
+     *
+     */
     public function printScriptHead()
     {
         foreach ($this->scripts as $script) {
@@ -53,6 +70,9 @@ class Head
         }
     }
 
+    /**
+     *
+     */
     public function printScriptFooter()
     {
         foreach ($this->scripts as $script) {
@@ -64,6 +84,9 @@ class Head
         }
     }
 
+    /**
+     *
+     */
     public function printStyle()
     {
         foreach($this->styles as $style){
