@@ -57,8 +57,8 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body pad">
+                    <span id="preview_thumb"></span>
                     <a href="#" class="btn btn-block btn-info btn-flat" id="add_thumb">Прикрепить миниатюру</a>
-
                 </div>
             </div>
         </div>
