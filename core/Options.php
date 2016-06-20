@@ -15,6 +15,10 @@ class Options
         $this->core = new Core();
     }
 
+    /**
+     * @param string $key
+     * @return bool
+     */
     public function get($key)
     {
         if (!empty($key)) {
@@ -25,6 +29,11 @@ class Options
         }
     }
 
+    /**
+     * @param string $key
+     * @param string $value
+     * @return array|bool|int|string
+     */
     public function set($key, $value)
     {
         if (!empty($key)) {
