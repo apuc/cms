@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/datepicker/datepicker3.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/daterangepicker/daterangepicker-bs3.css">
+
+    <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/dist/css/style.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet"
           href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">

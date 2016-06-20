@@ -16,6 +16,13 @@ class RecordMeta
         $this->core = new Core();
     }
 
+    /**
+     * 
+     * @param int $record_id
+     * @param int $meta_key
+     * @param string $meta_value
+     * @return array|bool|int|string
+     */
     public function add($record_id, $meta_key, $meta_value)
     {
         if ($this->core->db->_isset(['record_id' => $record_id, 'meta_key' => $meta_key], $this->core->config->db()['suffix'] . 'recordmeta') > 0) {

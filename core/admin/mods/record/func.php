@@ -17,10 +17,22 @@ $admin->addMenuItem('Редактировать запись', 'edit_record', 'a
 
 function admin_add_record($app)
 {
-    prn($app->record_meta->get(2, 'cxzc'));
 
+    $user = get_current();
+    if (isset($_POST['submit'])) {
+        record_add([
+            'title' => $_POST['title'],
+            'author' => $user['id'],
+            'content' => $_POST['content'],
+            'type' => $_POST['type'],
+        ]);
+        render_admin('/admin_lte/views/alert_success.php', [
+            'title' => 'Запись успешно добавлена!',
+            'msg' => '<a href="/' . config_routing('admin-panel') . '/'.$_POST['type'].'">Список записей</a>',
+        ]);
+    }
     render_admin('/admin_lte/views/add_record.php', [
-       //'all_record' => $all_record,
+         'type' => $_GET['type'],
     ]);
 }
 
@@ -34,8 +46,7 @@ function admin_all_record($app)
 
 
     ]);
-    //  echo "dfdsf";
-}
+   }
 
 function admin_del_record($app)
 {

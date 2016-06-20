@@ -8,7 +8,10 @@
  */
 class Routing
 {
-
+    /**
+     *
+     * @return string
+     */
     public function run()
     {
         $config = new Config();
@@ -22,6 +25,9 @@ class Routing
         }
     }
 
+    /**
+     * @return string
+     */
     public function get_slug()
     {
         if (isset($_SERVER['REQUEST_URI'])) {

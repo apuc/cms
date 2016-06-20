@@ -16,6 +16,11 @@ class Records
         $this->core = new Core();
     }
 
+    /**
+     * Добовление новой записи
+     * @param array $data
+     * @return array|bool|int|string
+     */
     public function add($data)
     {
         if (!empty($data)) {
@@ -62,6 +67,11 @@ class Records
         }
     }
 
+    /**
+     * Получить слаг по названию
+     * @param string $title
+     * @return mixed|string
+     */
     public function genSlug($title)
     {
         $slug = str2url($title);
@@ -82,6 +92,10 @@ class Records
         return $slug;
     }
 
+    /**
+     * Добавить тип записи
+     * @param array $args
+     */
     public function addRecordsType($args)
     {
         $this->records_types[] = [
@@ -93,6 +107,9 @@ class Records
         ];
     }
 
+    /**
+     * Регистрирует тип поста
+     */
     public function registerRecordType()
     {
         global $admin;
@@ -102,6 +119,11 @@ class Records
         }
     }
 
+    /**
+     * ПОлучить запись по id
+     * @param int $id
+     * @return bool
+     */
     public function get($id)
     {
         return $this->core->db->getFromId($id, $this->core->config->db()['suffix'] . 'records');
@@ -112,17 +134,32 @@ class Records
 
     }
 
+    /**
+     * Получить слаг
+     * @param string $slug
+     * @return mixed
+     */
     public function getBySlug($slug)
     {
         return $this->core->db->getByField('slug', $slug, $this->core->config->db()['suffix'] . 'records')[0];
     }
 
+    /**
+     * Обновить
+     * @param int $id
+     * @param array $data
+     * @return array|bool
+     */
     public function update($id, $data)
     {
         return $this->core->db->update($data, $this->core->config->db()['suffix'] . 'records', ['id' => $id]);
 
     }
 
+    /**
+     * @param array $data
+     * @return array|bool|int|string
+     */
     public function set($data)
     {
         if (isset($data['id'])) {
@@ -137,6 +174,11 @@ class Records
         return $res;
     }
 
+    /**
+     * Получить запись по типу
+     * @param $record_type
+     * @return array|bool
+     */
     public function get_by_type($record_type)
     {
         return $this->core->db->getByField('type', $record_type, $this->core->config->db()['suffix'] . 'records');
