@@ -11,7 +11,8 @@ $( document ).ready(function() {
                 $('#editor').dialogelfinder('close');
                 $('#editor').closest('.elfinder').val(file.path);
                 console.log(file.url);
-                $('#preview_thumb').html('<img src="' + file.url + '" width="100%">')
+                $('#preview_thumb').html('<img src="' + file.url + '" width="100%">');
+                $('#photo_input').val(file.url);
             }
         });
     });

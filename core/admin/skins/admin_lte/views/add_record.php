@@ -25,6 +25,7 @@
                 <div class="box-body pad">
                     <form action="" method="post">
                         <input type="hidden" name="type" value="<?= $type; ?>">
+                        <input type="hidden" name="photo" value="" id="photo_input">
                         <div class="form-group">
                             <label>Название</label>
                             <input type="text" name="title" class="form-control" placeholder="Заголовок">
