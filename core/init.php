@@ -15,6 +15,7 @@ require_once ('Routing.php');
 require_once ('Records.php');
 require_once ('RecordMeta.php');
 require_once ('Head.php');
+require_once ('Category.php');
 
 
 $cookie = new Cookie();
@@ -23,6 +24,7 @@ $options = new Options();
 $record = new Records();
 $record_meta = new RecordMeta();
 $header = new Head();
+$category = new Category();
 
 require_once ('functions/config.php');
 require_once ('functions/cookie.php');
@@ -30,6 +32,7 @@ require_once ('functions/options.php');
 require_once ('functions/parser.php');
 require_once ('functions/record.php');
 require_once ('functions/record_meta.php');
+require_once ('functions/category.php');
 
 require_once ('User.php');
 require_once ('functions/user.php');

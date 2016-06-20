@@ -125,7 +125,20 @@
                             <li class="<?= ($admin->getSlug() == $item['slug']) ? 'active' : '' ?>">
                                 <a href="/<?= $config->routing()['admin-panel'] . '/' . $item['slug'] ?>">
                                     <i class="fa <?= $item['icon'] ?>"></i> <span><?= $item['title'] ?></span>
+                                    <?= (isset($item['child'])) ? '<i class="fa fa-angle-left pull-right"></i>' : '' ?>
                                 </a>
+                                <?php if (isset($item['child'])): ?>
+                                    <ul class="treeview-menu">
+                                        <?php foreach ($item['child'] as $child): ?>
+                                            <li class="<?= ($admin->getSubSlug() == $child['slug']) ? 'active' : '' ?>">
+                                                <a href="/<?= $config->routing()['admin-panel'] . '/' . $item['slug'] . '/' . $child['slug']?>">
+                                                    <i class="fa fa-circle-o"></i>
+                                                    <?= $child['title'] ?>
+                                                </a>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif ?>
                             </li>
                         <?php endif ?>
                     <?php endforeach; ?>

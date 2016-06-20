@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div>
-                            <a href="/<?= config_routing('admin-panel') ?>/add_record/?type=<?=$item['slug']?>" class="btn btn-primary"
+                            <a href="/<?= config_routing('admin-panel') . '/' . $item['slug'] ?>/add" class="btn btn-primary"
                                style="margin-right: 10px">Добавить</a>
                         </div>
                     </div>

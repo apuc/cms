@@ -8,16 +8,18 @@
  */
 class Admin
 {
-
+    public $sub_menu_items = [];
     public $menu_items = [];
     public $hooks = [];
     public $slug;
+    public $sub_slug;
     private $core;
     private $app;
 
     function __construct()
     {
         $this->slug = $this->getSlug();
+        $this->sub_slug = $this->getSubSlug();
         $this->core = new Core();
         $this->app = new App();
     }
@@ -42,6 +44,51 @@ class Admin
             'show' => $show,
             'rule' => $rule,
             'order' => $order,
+            'app' => $app,
+        ];
+    }
+
+    /**
+     * @param string $parent_slug
+     * @param string $title
+     * @param string $slug
+     * @param bool $app
+     */
+    public function addRecordSubItem($parent_slug, $title, $slug, $app = false)
+    {
+        $this->sub_menu_items[$parent_slug][] = [
+            'parent_slug' => $parent_slug,
+            'title' => $title,
+            'slug' => $slug,
+            'app' => $app,
+        ];
+    }
+
+    public function addRecordSubItemCategory($parent_slug, $title, $slug, $app = false)
+    {
+        $this->sub_menu_items[$parent_slug][] = [
+            'parent_slug' => $parent_slug,
+            'title' => $title,
+            'slug' => $slug,
+            'app' => $app,
+            'cat' => true,
+        ];
+    }
+
+    /**
+     * @param string $parent_slug
+     * @param string $title
+     * @param string $slug
+     * @param string $func_name
+     * @param bool $app
+     */
+    public function addSubMenuItem($parent_slug, $title, $slug, $func_name, $app = false)
+    {
+        $this->sub_menu_items[$parent_slug][] = [
+            'parent_slug' => $parent_slug,
+            'title' => $title,
+            'slug' => $slug,
+            'func_name' => $func_name,
             'app' => $app,
         ];
     }
@@ -91,28 +138,73 @@ class Admin
     public function content()
     {
         foreach ($this->menu_items as $item) {
-            if ($this->slug == $item['slug']) {
-                if(isset($item['record_type'])){
-                    render_admin('/admin_lte/views/record_form.php', [
-                        'item' => $item,
-                        'core' => $this->core,
-                        'app' => $this->app,
-                        'record' => $this->app->record->get_by_type($item['slug']),
-                    ]);
+            if (isset($item['child'])) {
+                if (isset($item['record_type'])) {
+                    if($this->sub_slug == 'all' and $this->slug == $item['slug']){
+                        render_admin('/admin_lte/views/record_form.php', [
+                            'item' => $item,
+                            'core' => $this->core,
+                            'app' => $this->app,
+                            'record' => $this->app->record->get_by_type($item['slug']),
+                        ]);
+                    }
+                    if($this->sub_slug == 'add' and $this->slug == $item['slug']){
+                        render_admin('/admin_lte/views/add_record.php', [
+                            'type' => $item['slug'],
+                        ]);
+                    }
+                    foreach($item['child'] as $child){
+                        if(isset($child['cat']) and $this->sub_slug == $child['slug']){
+                            render_admin('/admin_lte/views/category.php', [
+                                'core' => $this->core,
+                                'app' => $this->app,
+                                'record_type' => $this->slug,
+                                'type_category' => $this->sub_slug,
+                            ]);
+                        }
+                    }
                 }
                 else{
-                    if($item['app']){
-                        call_user_func($item['func_name'],$this->app);
+                    foreach ($item['child'] as $child) {
+                        if ($child['slug'] == $this->sub_slug) {
+                            if ($child['app']) {
+                                call_user_func($child['func_name'], $this->app);
+                            } else {
+                                call_user_func($child['func_name']);
+                            }
+                        }
                     }
-                    else {
-                        call_user_func($item['func_name']);
+                }
+            } else {
+                if ($this->slug == $item['slug']) {
+                    if (isset($item['record_type'])) {
+                        if($this->sub_slug == 'all'){
+                            render_admin('/admin_lte/views/record_form.php', [
+                                'item' => $item,
+                                'core' => $this->core,
+                                'app' => $this->app,
+                                'record' => $this->app->record->get_by_type($item['slug']),
+                            ]);
+                        }
+                        if($this->sub_slug == 'add'){
+                            render_admin('/admin_lte/views/add_record.php', [
+                                'type' => $item['slug'],
+                            ]);
+                        }
+                    } else {
+                        if ($item['app']) {
+                            call_user_func($item['func_name'], $this->app);
+                        } else {
+                            call_user_func($item['func_name']);
+                        }
                     }
                 }
             }
         }
     }
 
-    public function getActivePage(){
+    public function getActivePage()
+    {
 
 
     }
@@ -120,7 +212,8 @@ class Admin
     /**
      * @return mixed
      */
-    public function title(){
+    public function title()
+    {
         foreach ($this->menu_items as $item) {
             if ($this->slug == $item['slug']) {
                 return $item['title'];
@@ -139,12 +232,29 @@ class Admin
     }
 
     /**
+     * @return mixed
+     */
+    public function getSubSlug()
+    {
+        $uri = explode('/', $_SERVER['REQUEST_URI']);
+        return $uri[3];
+    }
+
+    /**
      * Сортирует меню
      */
-    public function sortMenu(){
+    public function sortMenu()
+    {
         $order = [];
-        foreach($this->menu_items as $key => $item){
+        $i = 0;
+        foreach ($this->menu_items as $key => $item) {
+            if (isset($this->sub_menu_items[$item['slug']])) {
+                foreach ($this->sub_menu_items[$item['slug']] as $sub_item) {
+                    $this->menu_items[$i]['child'][] = $sub_item;
+                }
+            }
             $order[$key] = $item['order'];
+            $i++;
         }
         array_multisort($order, SORT_NUMERIC, $this->menu_items);
     }

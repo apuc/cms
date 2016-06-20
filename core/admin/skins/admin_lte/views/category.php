@@ -1,12 +1,19 @@
 <?php
 /**
- * @var $type string
+ * Created by PhpStorm.
+ * User: Nancy
+ * Date: 20.06.2016
+ * Time: 15:24
+ * @var $post_type
+ * @var $type_category
+ * @var $type
+ * @var $record_type
  */
 ?>
 
 <section class="content">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-6">
             <div class="box box-info">
                 <div class="box-header">
                     <div class="pull-right box-tools">
@@ -22,17 +29,18 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                    <form action="/<?= config_routing('admin-panel') ?>/add_record" method="post">
+                    <form action="/<?= config_routing('admin-panel') ?>/add_category" method="post">
                         <input type="hidden" name="type" value="<?= $type; ?>">
                         <input type="hidden" name="photo" value="" id="photo_input">
                         <div class="form-group">
                             <label>Название</label>
-                            <input type="text" name="title" class="form-control" placeholder="Заголовок">
+                            <input type="text" name="title" class="form-control" placeholder="">
                         </div>
                         <div class="form-group">
-                            <label>Контент</label>
-                            <textarea id="editor1" name="content" rows="10" cols="80">
-                            </textarea>
+                            <label>Ярлык</label>
+                            <input type="text" name="slug" class="form-control" placeholder="">
+                            <input type="hidden" name="record_type" value="<?= $record_type?>" >
+                            <input type="hidden" name="type_category" value="<?= $type_category?>" ">
                         </div>
                         <div class="box-footer">
                             <button type="submit" name="submit" class="btn btn-primary">Добавить</button>
@@ -42,7 +50,7 @@
             </div>
             <!-- /.box -->
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
             <div class="box box-info">
                 <div class="box-header">
                     <div class="pull-right box-tools">
@@ -57,8 +65,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                    <span id="preview_thumb"></span>
-                    <a href="#" class="btn btn-block btn-info btn-flat" id="add_thumb">Прикрепить миниатюру</a>
+
                 </div>
             </div>
         </div>

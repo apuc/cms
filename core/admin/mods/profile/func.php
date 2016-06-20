@@ -54,11 +54,11 @@ function profile_edit_func($app)
             'prof' => $prof_ed,
         ]);
         if (is_uploaded_file($_FILES["photo"]["tmp_name"])) {
-            if (!file_exists($_SERVER['DOCUMENT_ROOT'] . "/public/upload/" . get_login())) {
-                mkdir($_SERVER['DOCUMENT_ROOT'] . "/public/upload/" . get_login());
+            if (!file_exists($_SERVER['DOCUMENT_ROOT'] . "/public/upload/users/" . get_login())) {
+                mkdir($_SERVER['DOCUMENT_ROOT'] . "/public/upload/users/" . get_login());
             }
-            user_update($id, ['photo' => "/public/upload/" . get_login() . "/" . $id . ".png"]);
-            move_uploaded_file($_FILES["photo"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/public/upload/" . get_login() . "/" . $id . ".png");
+            user_update($id, ['photo' => "/public/upload/users/" . get_login() . "/" . $id . ".png"]);
+            move_uploaded_file($_FILES["photo"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/public/upload/users/" . get_login() . "/" . $id . ".png");
         }
     }
 }

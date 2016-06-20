@@ -15,7 +15,17 @@ function test_func()
 }
 
 $admin->addMenuItem('test3', 'test2', 'test_func2',['admin'], 6, 'fa-bell', true, true);
+$admin->addSubMenuItem('test2', 'Тестовое подменю', 'test2_1', 'test_func2_1');
+$admin->addSubMenuItem('test2', 'Тестовое подменю2', 'test2_2', 'test_func2_2');
 //user_login('wwww@mail.ru', '123321');
+function test_func2_1()
+{
+    echo '2_1';
+}
+function test_func2_2()
+{
+    prn(category_add('Видео', 'video', 'type_feedback', '', 'feedback'));
+}
 function test_func2($app)
 {
     //user_login('wwww@mail.ru', '123321');
@@ -28,13 +38,14 @@ function test_func2($app)
     //prn(record_meta_all_meta(1));
    // prn(user_get_all());
     //user_set_pass(5,11111);
- prn(user_update_pass(11111,888888,5));
- prn(record_get_by_type('reviews'));
- prn(record_get_by_type('reviews'));
+
+
 
 }
 
 $record->addRecordsType(['title' => 'Отзывы', 'type' => 'feedback', 'icon' => 'fa-bell', 'order' => 5]);
+$category->addCategoryTypeGroup('Вид отзыва', 'type_feedback', 'feedback');
+$category->addCategoryTypeGroup('Длинна отзыва', 'size_feedback', 'feedback');
 
 /*$cookie->hook('my_login');
 

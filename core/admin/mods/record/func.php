@@ -8,7 +8,8 @@
  */
 
 $admin->addMenuRecord('Записи', 'record', ['admin', 'user'], 1, 'fa-comment');
-
+$admin->addRecordSubItem('record', 'Все', 'all', true);
+$admin->addRecordSubItem('record', 'Добавить', 'add', true);
 
 $admin->addMenuItem('Добавить запись', 'add_record', 'admin_add_record', ['admin'], 1, '', false, true);
 $admin->addMenuItem('Все звписи', 'all_record', 'admin_all_record', ['admin'], 1, '', false, true);
@@ -17,7 +18,6 @@ $admin->addMenuItem('Редактировать запись', 'edit_record', 'a
 
 function admin_add_record($app)
 {
-
     $user = get_current();
     if (isset($_POST['submit'])) {
         record_add([
@@ -25,14 +25,15 @@ function admin_add_record($app)
             'author' => $user['id'],
             'content' => $_POST['content'],
             'type' => $_POST['type'],
+            'photo' => $_POST['photo'],
         ]);
         render_admin('/admin_lte/views/alert_success.php', [
             'title' => 'Запись успешно добавлена!',
-            'msg' => '<a href="/' . config_routing('admin-panel') . '/'.$_POST['type'].'">Список записей</a>',
+            'msg' => '<a href="/' . config_routing('admin-panel') . '/'.$_POST['type']. '/all">Список записей</a>',
         ]);
     }
     render_admin('/admin_lte/views/add_record.php', [
-         'type' => $_GET['type'],
+         'type' => $_POST['type'],
     ]);
 }
 

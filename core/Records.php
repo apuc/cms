@@ -50,6 +50,9 @@ class Records
                     $insert['type'] = 'record';
                 }
                 $insert['slug'] = $this->genSlug($data['title']);
+                if (isset($data['photo'])) {
+                    $insert['photo'] = $data['photo'];
+                }
 
                 if (isset($data['id'])) {
                     $insert['dt_update'] = time();
@@ -107,6 +110,7 @@ class Records
         ];
     }
 
+
     /**
      * Регистрирует тип поста
      */
@@ -114,8 +118,9 @@ class Records
     {
         global $admin;
         foreach ($this->records_types as $item) {
-            $admin->addMenuRecord($item['title'], $item['type'], $item['rule'], $item['order'] , $item['icon']);
-
+            $admin->addMenuRecord($item['title'], $item['type'], $item['rule'], $item['order'], $item['icon']);
+            $admin->addRecordSubItem($item['type'], 'Все', 'all', true);
+            $admin->addRecordSubItem($item['type'], 'Добавить', 'add', true);
         }
     }
 

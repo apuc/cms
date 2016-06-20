@@ -19,6 +19,7 @@ foreach($adminConfig->get()['mods'] as $mod){
 include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/admin/admin.php');
 
 $record->registerRecordType();
+$category->registerCategory();
 $cookie->set_all_cookie();
 $admin->sortMenu();
 
