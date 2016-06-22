@@ -21,6 +21,11 @@ $admin->addSubMenuItem('test2', 'Тестовое подменю2', 'test2_2', '
 function test_func2_1()
 {
     echo '2_1';
+    //prn(category_get_by_slug('glavnaya'));
+  //  prn(category_get_by_id(8));
+   // prn(category_get_by_record_type('feedback'));
+   // prn(category_get_by_type_category('type_feedback'));
+   // prn(record_get_category(82));
 }
 function test_func2_2()
 {
@@ -41,14 +46,22 @@ function test_func2($app)
 
 
 
+
 }
 
 $record->addRecordsType(['title' => 'Отзывы', 'type' => 'feedback', 'icon' => 'fa-bell', 'order' => 5]);
 $category->addCategoryTypeGroup('Вид отзыва', 'type_feedback', 'feedback');
 $category->addCategoryTypeGroup('Длинна отзыва', 'size_feedback', 'feedback');
+$record_hook->addCustomField('author','feedback', 'feedback_custom', true);
+$record_hook->addToSave('author','feedback', 'save_custom', true);
 
-/*$cookie->hook('my_login');
+function feedback_custom($app)
+{
+    render('/views/author_input.php',[]);
 
-function my_login(){
-    user_login('wwww@mail.ru', '123321');
-}*/
+}
+
+function save_custom($app)
+{
+
+}

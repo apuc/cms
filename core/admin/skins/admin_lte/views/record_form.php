@@ -65,15 +65,15 @@
                             <tbody>
                             <?php foreach ($record as $item): ?>
                                 <tr role="row" class="odd">
-
                                     <td class="sorting_1"><?= $item['title'] ?></td>
                                     <td><?= user_get_login_by_id($item['author']); ?></td>
                                     <td><?= date('d-m-Y', $item['dt_add']) ?></td>
                                     <td>
-                                        <a href="/<?= config_routing('admin-panel') ?>/del_record/?del=<?= $item['id'] ?>"><i
-                                                class="fa fa-trash" style="color: red" aria-hidden="true"></i></a>
+                                        <a href="/<?= config_routing('admin-panel') ?>/del_record/?del=<?= $item['id'] ?>&type=<?= $item['type'] ?>">
+                                            <i class="fa fa-trash" style="color: red" aria-hidden="true"></i>
+                                        </a>
 
-                                        <a href="/<?= config_routing('admin-panel') ?>/edit_record/?edit=<?= $item['id'] ?>">
+                                        <a href="<?= admin_url($item['type'].'/edit/?id='.$item['id']) ?>">
                                             <i class="fa fa-pencil-square-o" style="color: blue" aria-hidden="true"></i></a>
                                     </td>
 

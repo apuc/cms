@@ -17,6 +17,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/iCheck/all.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/iCheck/flat/blue.css">
     <!-- Morris chart -->
@@ -32,10 +33,12 @@
     <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/elFinder/css/elfinder.min.css">
     <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/elFinder/css/theme.css">
 
-    <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/dist/css/style.css">
+
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet"
           href="<?= $admin->getSkinDir() ?>/admin_lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+    <link rel="stylesheet" href="<?= $admin->getSkinDir() ?>/admin_lte/dist/css/style.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

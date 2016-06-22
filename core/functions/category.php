@@ -22,3 +22,33 @@ function category_delete($id)
     global $category;
     return $category->del($id);
 }
+
+function category_print_category_checkbox($parent, $type, $checked = [])
+{
+    global $category;
+    $category->printCategoryCheckbox($parent, $type, $checked);
+}
+
+function category_get_by_slug($slug)
+{
+    global $category;
+    return $category->getBySlug($slug);
+}
+
+function category_get_by_id($id)
+{
+    global $category;
+    return $category->getById($id);
+}
+
+function category_get_by_record_type($record_type)
+{
+    global $category;
+    return $category->getByRecordType($record_type);
+}
+
+function category_get_by_type_category($type_category)
+{
+    global $category;
+    return $category->getByTypeCategory($type_category);
+}

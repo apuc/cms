@@ -21,6 +21,7 @@ require_once ('Url.php');
 require_once ('Ajax.php');
 
 
+
 $cookie = new Cookie();
 $config = new Config();
 $options = new Options();
@@ -30,6 +31,7 @@ $header = new Head();
 $category = new Category();
 $form = new Forms();
 $url = new Url();
+
 
 require_once ('functions/config.php');
 require_once ('functions/cookie.php');
@@ -48,6 +50,9 @@ $user = new User();
 $core = new Core();
 
 require_once ('App.php');
+require_once ('RecordHook.php');
+require_once ('functions/record_hook.php');
+$record_hook = new RecordHook();
 
 $ajax = new Ajax();
 

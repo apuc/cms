@@ -79,7 +79,7 @@ class Category
 
     public function del($id)
     {
-        return $this->core->db->queryDeleteByField(db_table('category'),'id', $id);
+        return $this->core->db->queryDeleteByField(db_table('category'), 'id', $id);
     }
 
     public function printCategoryTree($parent, $type)
@@ -94,5 +94,39 @@ class Category
             echo "</li>";
         }
         echo "</ul>";
+    }
+
+    public function printCategoryCheckbox($parent, $type, $checked = [])
+    {
+        $check = $this->getByParentId($parent, $type);
+        echo "<ul>";
+        foreach ($check as $ch) {
+            $check_cat = (in_array($ch['id'], $checked)) ? 'checked' : '';
+            echo "<li><input type='checkbox' $check_cat class='reviews_cats-check' value='" . $ch['id'] . "' >";
+            echo $ch['title'];
+            $this->printCategoryCheckbox($ch['id'], $type, $checked);
+            echo "</li>";
+        }
+        echo "</ul>";
+    }
+
+    public function getBySlug($slug)
+    {
+        return $this->core->db->getByField('slug', $slug, db_table('category'))[0];
+    }
+
+    public function getById($id)
+    {
+        return $this->core->db->getByField('id', $id, db_table('category'))[0];
+    }
+
+    public function getByRecordType($record_type)
+    {
+        return $this->core->db->getByField('record_type', $record_type, db_table('category'));
+    }
+
+    public function getByTypeCategory($type_category)
+    {
+        return $this->core->db->getByField('type_category', $type_category, db_table('category'));
     }
 }

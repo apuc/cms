@@ -137,10 +137,11 @@ class Admin
      */
     public function content()
     {
+        global $category;
         foreach ($this->menu_items as $item) {
             if (isset($item['child'])) {
                 if (isset($item['record_type'])) {
-                    if($this->sub_slug == 'all' and $this->slug == $item['slug']){
+                    if ($this->sub_slug == 'all' and $this->slug == $item['slug']) {
                         render_admin('/admin_lte/views/record_form.php', [
                             'item' => $item,
                             'core' => $this->core,
@@ -148,13 +149,22 @@ class Admin
                             'record' => $this->app->record->get_by_type($item['slug']),
                         ]);
                     }
-                    if($this->sub_slug == 'add' and $this->slug == $item['slug']){
+                    if ($this->sub_slug == 'add' and $this->slug == $item['slug']) {
                         render_admin('/admin_lte/views/add_record.php', [
                             'type' => $item['slug'],
+                            'category' => $category->category_group,
                         ]);
                     }
-                    foreach($item['child'] as $child){
-                        if(isset($child['cat']) and $this->sub_slug == $child['slug']){
+                    if ($this->sub_slug == 'edit' and $this->slug == $item['slug']) {
+                        render_admin('/admin_lte/views/edit_record.php', [
+                            'type' => $item['slug'],
+                            'category' => $category->category_group,
+                            'record' => record_get($_GET['id']),
+                            'this_category' => record_get_category($_GET['id']),
+                        ]);
+                    }
+                    foreach ($item['child'] as $child) {
+                        if (isset($child['cat']) and $this->sub_slug == $child['slug']) {
                             render_admin('/admin_lte/views/category.php', [
                                 'core' => $this->core,
                                 'app' => $this->app,
@@ -164,8 +174,7 @@ class Admin
                             ]);
                         }
                     }
-                }
-                else{
+                } else {
                     foreach ($item['child'] as $child) {
                         if ($child['slug'] == $this->sub_slug) {
                             if ($child['app']) {
@@ -179,7 +188,7 @@ class Admin
             } else {
                 if ($this->slug == $item['slug']) {
                     if (isset($item['record_type'])) {
-                        if($this->sub_slug == 'all'){
+                        if ($this->sub_slug == 'all') {
                             render_admin('/admin_lte/views/record_form.php', [
                                 'item' => $item,
                                 'core' => $this->core,
@@ -187,9 +196,16 @@ class Admin
                                 'record' => $this->app->record->get_by_type($item['slug']),
                             ]);
                         }
-                        if($this->sub_slug == 'add'){
+                        if ($this->sub_slug == 'add') {
                             render_admin('/admin_lte/views/add_record.php', [
                                 'type' => $item['slug'],
+                            ]);
+                        }
+                        if ($this->sub_slug == 'edit' and $this->slug == $item['slug']) {
+                            render_admin('/admin_lte/views/edit_record.php', [
+                                'type' => $item['slug'],
+                                'category' => $category->category_group,
+                                'record' => record_get($_GET['id']),
                             ]);
                         }
                     } else {

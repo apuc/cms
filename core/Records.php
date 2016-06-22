@@ -10,6 +10,7 @@ class Records
 {
     public $records_types;
     private $core;
+    public $custom_field;
 
     function __construct()
     {
@@ -188,4 +189,16 @@ class Records
     {
         return $this->core->db->getByField('type', $record_type, $this->core->config->db()['suffix'] . 'records');
     }
+
+    public function getCategory($id)
+    {
+        $c = [];
+        $category = $this->core->db->getByField('record_id', $id, db_table('category_relationship'));
+        foreach ($category as $cat) {
+          $c[] = $cat['category_id'];
+        }
+        return $c;
+    }
+
+
 }

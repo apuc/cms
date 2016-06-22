@@ -3,6 +3,8 @@
  * @var $type string
  * @var $category array
  * @var $checkId
+ * @var $record
+ * @var $this_category
  */
 ?>
 
@@ -25,22 +27,23 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                    <form action="/<?= config_routing('admin-panel') ?>/add_record" method="post">
+                    <form action="<?= admin_url('edit_record') ?>" method="post">
                         <input type="hidden" name="type" value="<?= $type; ?>">
-                        <input type="hidden" name="photo" value="" id="photo_input">
+                        <input type="hidden" name="photo" value="<?= $record['photo'] ?>" id="photo_input">
                         <div class="form-group">
                             <label>Название</label>
-                            <input type="text" name="title" class="form-control" placeholder="Заголовок">
+                            <input type="text" name="title" class="form-control" placeholder="Заголовок"
+                                   value="<?= $record['title'] ?>">
                         </div>
                         <div class="form-group">
                             <label>Контент</label>
                             <textarea id="editor1" name="content" rows="10" cols="80">
+                               <?= $record['content'] ?>
                             </textarea>
                         </div>
-                        <input type="hidden" name="check_id" value="" id="check_id" >
-                        <?= record_get_custom_field($type) ?>
+                        <input type="hidden" name="check_id" value="<?= implode(',', $this_category)?>," id="check_id">
                         <div class="box-footer">
-                            <button type="submit" name="submit" class="btn btn-primary">Добавить</button>
+                            <button type="submit" name="save" value="<?= $record['id'] ?>" class="btn btn-primary">Сохранить</button>
                         </div>
                     </form>
                 </div>
@@ -63,7 +66,11 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                    <span id="preview_thumb"></span>
+                    <span id="preview_thumb">
+                        <?php if (!empty($record['photo'])): ?>
+                            <img src="<?= $record['photo'] ?>" width="100%">
+                        <?php endif; ?>
+                    </span>
                     <a href="#" class="btn btn-block btn-info btn-flat" id="add_thumb">Прикрепить миниатюру</a>
                 </div>
 
@@ -87,7 +94,7 @@
                     <?php foreach ($category as $cat): ?>
                         <?php if ($cat['record_type'] == $type): ?>
                             <div><b><?= $cat['title'] ?></b></div>
-                            <?php category_print_category_checkbox(0, $cat['slug']) ?>
+                            <?php category_print_category_checkbox(0, $cat['slug'], $this_category) ?>
                         <?php endif ?>
                     <?php endforeach; ?>
 

@@ -28,3 +28,18 @@
 .categ_tab li a {
     float: right;
 }
+
+.reviews_cats ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.reviews_cats ul li ul {
+    padding-left: 15px;
+}
+
+input[type=checkbox].reviews_cats-check {
+    margin-right: 10px;
+    vertical-align: baseline;
+
+}
