@@ -1,7 +1,10 @@
 $( document ).ready(function() {
-    CKEDITOR.replace('editor1', {
-        filebrowserBrowseUrl : '/core/admin/skins/admin_lte/plugins/elFinder/elfinder.html'
-    });
+    var editor = document.getElementById('editor1');
+    if(editor){
+        CKEDITOR.replace('editor1', {
+            filebrowserBrowseUrl : '/core/admin/skins/admin_lte/plugins/elFinder/elfinder.html'
+        });
+    }
 
     $('#add_thumb').on('click', function(){
         $('<div id="editor" />').dialogelfinder({
@@ -15,5 +18,32 @@ $( document ).ready(function() {
                 $('#photo_input').val(file.url);
             }
         });
+    });
+
+    $('#add_categ').on('click', function(){
+        var form = $('#categ_form').serialize();
+        $.ajax({
+            type: 'POST',
+            url: admin_ajax,
+            data: form,
+            success: function (data) {
+                $('.category_tree').html(data);
+            }
+        });
+        return false;
+    });
+
+    $('.del_cat').on('click', function(){
+        var catId = $(this).data('id');
+        $.ajax({
+            type: 'POST',
+            url: admin_ajax,
+            data: {action:'del_cat', id:catId},
+            success: function (data) {
+                console.log(data);
+            }
+        });
+        $(this).parent().remove();
+        return false;
     });
 });

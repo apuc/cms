@@ -14,6 +14,9 @@ class App
     public $user;
     public $option;
     public $record_meta;
+    public $url;
+    public $forms;
+    public $category;
 
     function __construct()
     {
@@ -22,5 +25,8 @@ class App
         $this->user = new User();
         $this->option = new Options();
         $this->record_meta = new RecordMeta();
+        $this->forms = new Forms();
+        $this->url = new Url();
+        $this->category = new Category();
     }
 }

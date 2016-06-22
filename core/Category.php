@@ -33,15 +33,66 @@ class Category
         }
     }
 
-    public function add($title, $slug, $type_category, $record_type = 'record', $parent_id = 0)
+    public function add($title, $type_category, $slug = false, $record_type = 'record', $parent_id = 0)
     {
         return $this->core->db->insert([
             'title' => $title,
-            'slug' => $slug,
+            'slug' => ($slug) ? $this->genSlug($slug) : $this->genSlug(str2url($title)),
             'type_category' => $type_category,
             'dt_add' => time(),
             'record_type' => $record_type,
             'parent_id' => $parent_id],
             db_table("category"));
+    }
+
+    public function genSlug($slug)
+    {
+        $isset = $this->core->db->_isset(['slug' => $slug], db_table('category'), true);
+        if ($isset != 0) {
+            $i = 1;
+            while ($isset != 0) {
+                if ($i == 1) {
+                    $slug .= $i;
+                } else {
+                    $slug = substr($slug, 0, -1);
+                    $slug .= $i;
+                }
+                $i++;
+                $isset = $this->core->db->_isset(['slug' => $slug], db_table('category'), true);
+            }
+        }
+        return $slug;
+    }
+
+    public function getByType($type)
+    {
+        return $this->core->db->getByField('type_category', $type, db_table('category'));
+    }
+
+    public function getByParentId($id, $type)
+    {
+        return $this->core->db->getWhere([
+            'parent_id' => $id,
+            'type_category' => $type,
+        ], db_table('category'));
+    }
+
+    public function del($id)
+    {
+        return $this->core->db->queryDeleteByField(db_table('category'),'id', $id);
+    }
+
+    public function printCategoryTree($parent, $type)
+    {
+        $cat = $this->getByParentId($parent, $type);
+        echo "<ul class='categ_tab'>";
+        foreach ($cat as $c) {
+            echo "<li>";
+            echo $c['title'];
+            echo '<a href="#" data-id="' . $c['id'] . '" class="del_cat"><i class="fa fa-trash" style="color: red" aria-hidden="true"></i></a>';
+            $this->printCategoryTree($c['id'], $type);
+            echo "</li>";
+        }
+        echo "</ul>";
     }
 }

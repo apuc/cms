@@ -6,3 +6,25 @@
     display: block;
     margin-top: 10px;
 }
+
+.categ_tab {
+    float: left;
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+}
+
+.categ_tab li {
+    float: right;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    /*background-color: #c0bfeb;*/
+    margin: 5px 0;
+    border: 1px solid #00c0ef;
+    border-radius: 5px;
+}
+
+.categ_tab li a {
+    float: right;
+}

@@ -23,15 +23,21 @@ $category->registerCategory();
 $cookie->set_all_cookie();
 $admin->sortMenu();
 
-if($user->current_user){
-    include ('skins/admin_lte/index.php');
+if($rout->get_slug() == 'ajax'){
+    include ('ajax.php');
 }
 else {
-    if($rout->get_slug() != "auth" && $rout->get_slug() != "register"){
-        header("Location: /" . $core->config->routing()['admin-panel'] . "/auth");
+    if($user->current_user){
+        include ('skins/admin_lte/index.php');
     }
-    include ('skins/admin_lte/index.php');
+    else {
+        if($rout->get_slug() != "auth" && $rout->get_slug() != "register"){
+            header("Location: /" . $core->config->routing()['admin-panel'] . "/auth");
+        }
+        include ('skins/admin_lte/index.php');
+    }
 }
+
 
 
 

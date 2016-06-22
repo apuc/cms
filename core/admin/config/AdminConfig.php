@@ -20,6 +20,7 @@ class AdminConfig
                 'rules',
                 'users',
                 'profile',
+                'category'
             ]
         ];
     }

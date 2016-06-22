@@ -160,6 +160,7 @@ class Admin
                                 'app' => $this->app,
                                 'record_type' => $this->slug,
                                 'type_category' => $this->sub_slug,
+                                'category' => $this->app->category->getByType($this->sub_slug),
                             ]);
                         }
                     }
@@ -205,7 +206,6 @@ class Admin
 
     public function getActivePage()
     {
-
 
     }
 

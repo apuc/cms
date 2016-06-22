@@ -345,7 +345,10 @@
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
-
+<script>
+    var admin_url = '<?= config_routing('admin-panel') ?>';
+    var admin_ajax = '/<?= config_routing('admin-panel') ?>/ajax';
+</script>
 <!-- jQuery 2.1.4 -->
 <script src="<?= $admin->getSkinDir() ?>/admin_lte/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
