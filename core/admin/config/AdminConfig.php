@@ -21,7 +21,7 @@ class AdminConfig
                 'users',
                 'profile',
                 'category',
-                'theme',
+                'themes',
             ]
         ];
     }
