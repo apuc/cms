@@ -9,6 +9,14 @@ $admin = new Admin();
 
 $adminConfig = new AdminConfig();
 
+if ($handle = opendir('public/mods/')) {
+    while (false !== ($file = readdir($handle))) {
+        if ($file != '.' && $file != '..') {
+            include (ROOT_DIR . '/public/mods/' . $file .'/func.php');
+            include (ROOT_DIR . '/public/mods/' . $file .'/admin/admin.php');
+        }
+    }
+}
 
 foreach($adminConfig->get()['mods'] as $mod){
     include (ROOT_DIR . '/core/admin/mods/' . $mod . '/func.php');

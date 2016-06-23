@@ -1,0 +1,8 @@
+<?xml version='1.0' standalone='yes'?>
+<main>
+    <name>Слайдер</name>
+    <slug>slider</slug>
+    <description>Модуль слайдера</description>
+    <author>Кирилл</author>
+    <version>0.1</version>
+</main>
