@@ -262,6 +262,13 @@ class Admin
     public function sortMenu()
     {
         $order = [];
+
+        foreach ($this->menu_items as $key => $item) {
+            $order[$key] = $item['order'];
+        }
+
+        array_multisort($order, SORT_NUMERIC, $this->menu_items);
+
         $i = 0;
         foreach ($this->menu_items as $key => $item) {
             if (isset($this->sub_menu_items[$item['slug']])) {
@@ -269,9 +276,7 @@ class Admin
                     $this->menu_items[$i]['child'][] = $sub_item;
                 }
             }
-            $order[$key] = $item['order'];
             $i++;
         }
-        array_multisort($order, SORT_NUMERIC, $this->menu_items);
     }
 }

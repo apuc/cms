@@ -28,8 +28,10 @@ class Category
     public function registerCategory()
     {
         global $admin;
-        foreach ($this->category_group as $group) {
-            $admin->addRecordSubItemCategory($group['record_type'], $group['title'], $group['slug'], true);
+        if(!empty($this->category_group)){
+            foreach ($this->category_group as $group) {
+                $admin->addRecordSubItemCategory($group['record_type'], $group['title'], $group['slug'], true);
+            }
         }
     }
 

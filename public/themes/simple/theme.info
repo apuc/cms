@@ -1,0 +1,8 @@
+<?xml version='1.0' standalone='yes'?>
+<main>
+    <name>Простая</name>
+    <slug>simple</slug>
+    <description>Простая тема</description>
+    <author>Кирилл</author>
+    <version>0.1</version>
+</main>

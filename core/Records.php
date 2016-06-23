@@ -118,10 +118,12 @@ class Records
     public function registerRecordType()
     {
         global $admin;
-        foreach ($this->records_types as $item) {
-            $admin->addMenuRecord($item['title'], $item['type'], $item['rule'], $item['order'], $item['icon']);
-            $admin->addRecordSubItem($item['type'], 'Все', 'all', true);
-            $admin->addRecordSubItem($item['type'], 'Добавить', 'add', true);
+        if(!empty($this->records_types)){
+            foreach ($this->records_types as $item) {
+                $admin->addMenuRecord($item['title'], $item['type'], $item['rule'], $item['order'], $item['icon']);
+                $admin->addRecordSubItem($item['type'], 'Все', 'all', true);
+                $admin->addRecordSubItem($item['type'], 'Добавить', 'add', true);
+            }
         }
     }
 

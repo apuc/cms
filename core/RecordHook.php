@@ -9,14 +9,12 @@
 class RecordHook
 {
 
-    private $core;
     public $custom_field;
     private $app;
     public $save_custom;
 
     function __construct()
     {
-        $this->core = new Core();
         $this->app = new App();
     }
     public function addCustomField($name, $record_type, $func_name, $app = false)
