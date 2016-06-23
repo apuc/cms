@@ -1,0 +1,8 @@
+<?xml version='1.0' standalone='yes'?>
+<main>
+    <name>Дубликация</name>
+    <slug>duplicate</slug>
+    <description>Модуль дубликации</description>
+    <author>Кирилл</author>
+    <version>0.1</version>
+</main>

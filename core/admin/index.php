@@ -10,10 +10,14 @@ $admin = new Admin();
 $adminConfig = new AdminConfig();
 
 if ($handle = opendir('public/mods/')) {
+    $mods = get_option('mods');
+    $all_mods = json_decode($mods, JSON_UNESCAPED_UNICODE);
     while (false !== ($file = readdir($handle))) {
         if ($file != '.' && $file != '..') {
-            include (ROOT_DIR . '/public/mods/' . $file .'/func.php');
-            include (ROOT_DIR . '/public/mods/' . $file .'/admin/admin.php');
+            if(in_array($file,$all_mods)){
+                include (ROOT_DIR . '/public/mods/' . $file .'/func.php');
+                include (ROOT_DIR . '/public/mods/' . $file .'/admin/admin.php');
+            }
         }
     }
 }

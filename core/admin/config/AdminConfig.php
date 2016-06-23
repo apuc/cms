@@ -22,6 +22,7 @@ class AdminConfig
                 'profile',
                 'category',
                 'themes',
+                'mods',
             ]
         ];
     }
