@@ -20,7 +20,7 @@ require_once ('Forms.php');
 require_once ('Url.php');
 require_once ('Ajax.php');
 
-
+$core = new Core();
 
 $cookie = new Cookie();
 $config = new Config();
@@ -47,7 +47,6 @@ require_once ('User.php');
 require_once ('functions/user.php');
 $user = new User();
 
-$core = new Core();
 
 require_once ('App.php');
 require_once ('RecordHook.php');

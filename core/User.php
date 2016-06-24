@@ -14,7 +14,8 @@ class User
 
     function __construct()
     {
-        $this->core = new Core();
+        global $core;
+        $this->core = $core;
         $id = cookie_get('id');
         if ($id) {
             $this->current_user = $this->get_current();

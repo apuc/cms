@@ -18,9 +18,10 @@ class Admin
 
     function __construct()
     {
+        global $core;
+        $this->core = $core;
         $this->slug = $this->getSlug();
         $this->sub_slug = $this->getSubSlug();
-        $this->core = new Core();
         $this->app = new App();
     }
 

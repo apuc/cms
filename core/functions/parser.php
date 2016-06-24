@@ -8,13 +8,13 @@
 
 function render_admin($tpl, $data, $view = true)
 {
-    $core = new Core();
+    global $core;
     return $core->parser->render(ROOT_DIR . '/core/admin/skins/' . $tpl, $data, $view);
 }
 
 function render($tpl, $data, $view = true)
 {
-    $core = new Core();
+    global $core;
     global $options;
     return $core->parser->render(ROOT_DIR . '/public/themes/' . $options->get('theme') . $tpl, $data, $view);
 }

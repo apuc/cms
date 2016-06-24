@@ -14,7 +14,8 @@ class Head
 
     function __construct()
     {
-        $this->core = new Core();
+        global $core;
+        $this->core = $core;
     }
 
     /**
