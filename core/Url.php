@@ -16,6 +16,10 @@ class Url
         $this->core = new Core();
     }
 
+    /**
+     * @param string $slug
+     * @return string
+     */
     public function admin_url($slug){
         return "/" . $this->core->config->routing()['admin-panel'] . "/" . $slug;
     }

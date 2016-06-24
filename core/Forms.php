@@ -129,6 +129,12 @@ class Forms
         return "<textarea name='$name' $op>$value</textarea>";
     }
 
+    /**
+     * @param string $value
+     * @param $for
+     * @param bool $options
+     * @return string
+     */
     public function label($value, $for, $options = false)
     {
         $op = $this->getOptions($options);
@@ -150,6 +156,12 @@ class Forms
         return $op;
     }
 
+    /**
+     * @param string $key
+     * @param string $value
+     * @param  array $array
+     * @return array
+     */
     public function arrayMap($key, $value, $array)
     {
         $arr = [];

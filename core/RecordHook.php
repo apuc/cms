@@ -17,6 +17,12 @@ class RecordHook
     {
         $this->app = new App();
     }
+    /**
+     * @param string $name
+     * @param string $record_type
+     * @param string $func_name
+     * @param bool $app
+     */
     public function addCustomField($name, $record_type, $func_name, $app = false)
     {
         $this->custom_field[] = [
@@ -27,7 +33,9 @@ class RecordHook
         ];
 
     }
-
+    /**
+     * @param string $type
+     */
     public function getCustomField($type)
     {
         foreach($this->custom_field as $custom){
@@ -41,6 +49,12 @@ class RecordHook
         }
     }
 
+    /**
+     * @param string $name
+     * @param string $record_type
+     * @param string $func_name
+     * @param bool $app
+     */
     public function addToSave($name, $record_type, $func_name, $app = false)
     {
         $this->save_custom[] = [
@@ -51,6 +65,9 @@ class RecordHook
         ];
     }
 
+    /**
+     * @param string $record_type
+     */
     public function saveCustomField($record_type)
     {
         foreach($this->save_custom as $record){

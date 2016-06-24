@@ -192,6 +192,10 @@ class Records
         return $this->core->db->getByField('type', $record_type, $this->core->config->db()['suffix'] . 'records');
     }
 
+    /**
+     * @param int $id
+     * @return array
+     */
     public function getCategory($id)
     {
         $c = [];
