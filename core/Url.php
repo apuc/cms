@@ -13,7 +13,8 @@ class Url
 
     function __construct()
     {
-        $this->core = new Core();
+        global $core;
+        $this->core = $core;
     }
 
     public function admin_url($slug){

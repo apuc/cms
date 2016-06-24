@@ -123,8 +123,9 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li class="header">Меню</li>
+                    <?php $rule = $user->get_rule(); ?>
                     <?php foreach ($admin->getMenuItems() as $item): ?>
-                        <?php if ($item['show'] && in_array($user->get_rule(), $item['rule'])): ?>
+                        <?php if ($item['show'] && in_array($rule, $item['rule'])): ?>
                             <li class="<?= ($admin->getSlug() == $item['slug']) ? 'active' : '' ?>">
                                 <a href="/<?= $config->routing()['admin-panel'] . '/' . $item['slug'] ?>">
                                     <i class="fa <?= $item['icon'] ?>"></i> <span><?= $item['title'] ?></span>

@@ -20,7 +20,8 @@ class App
 
     function __construct()
     {
-        $this->core = new Core();
+        global $core;
+        $this->core = $core;
         $this->record = new Records();
         $this->user = new User();
         $this->option = new Options();

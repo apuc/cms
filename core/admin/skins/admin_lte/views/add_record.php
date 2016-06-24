@@ -38,7 +38,7 @@
                             </textarea>
                         </div>
                         <input type="hidden" name="check_id" value="" id="check_id" >
-                        <?= record_get_custom_field($type) ?>
+                        <?php record_get_custom_field($type) ?>
                         <div class="box-footer">
                             <button type="submit" name="submit" class="btn btn-primary">Добавить</button>
                         </div>
