@@ -56,13 +56,32 @@ $record_hook = new RecordHook();
 $ajax = new Ajax();
 
 $rout = new Routing();
+
 $load = $rout->run();
-if($load == 'admin'){
+if($load[0] == 'admin'){
     include (ROOT_DIR . '/core/admin/index.php');
 }
 else{
     include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/func.php');
-    include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/index.php');
+    if($load[0] == 'index'){
+        include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/index.php');
+    }
+    if($load[0] == 'category'){
+        include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/category.php');
+    }
+    if($load[0] == 'type'){
+        include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/type.php');
+    }
+    if($load[0] == 'record'){
+        include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/record.php');
+    }
+    if($load[0] == '404'){
+        header("HTTP/1.1 404 Not Found");
+        header('Status: 404 Not Found');
+        prn($_SERVER);
+    }
+
+
 }
 //include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/func.php');
 //include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/index.php');

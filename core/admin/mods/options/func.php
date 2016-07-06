@@ -19,5 +19,5 @@ function admin_options(){
             'msg' => 'Удачное сохранение'
         ]);
     }
-    render_admin('/admin_lte/views/options.php', []);
+render_admin('/admin_lte/views/options.php', []);
 }

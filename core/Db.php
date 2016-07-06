@@ -98,15 +98,20 @@ class Db
      * @param string $field
      * @param string|integer $value
      * @param string $table
+     * @param bool $direct
      * @return array|bool
      */
-    public function getByField($field, $value, $table)
+    public function getByField($field, $value, $table, $direct = false)
     {
         $query = "SELECT * FROM `$table` WHERE ";
         if (is_int($value)) {
             $query .= "$field = $value";
         } else {
-            $query .= "$field LIKE '%$value%'";
+            if ($direct) {
+                $query .= " $field LIKE '$value'";
+            } else {
+                $query .= " $field LIKE '%$value%'";
+            }
         }
         return $this->rawQuery($query);
     }
@@ -150,9 +155,10 @@ class Db
      * @param $data array данные которые необходимо обновить
      * @param $table string
      * @param $where array
+     * @param $direct bool
      * @return array|bool
      */
-    public function update($data, $table, $where)
+    public function update($data, $table, $where, $direct = false)
     {
         if (!empty($data)) {
             $query = "UPDATE `$table` SET";
@@ -172,13 +178,17 @@ class Db
                     if (is_int($v)) {
                         $query .= " $k = $v";
                     } else {
-                        $query .= " $k LIKE '%$v%'";
+                        if ($direct) {
+                            $query .= " $k LIKE '$v'";
+                        } else {
+                            $query .= " $k LIKE '%$v%'";
+                        }
                     }
                 }
                 $query .= " AND";
             }
             $query = substr($query, 0, -3);
-            //var_dump($query);
+            //prn($query);
             return $this->rawQuery($query);
         }
     }
