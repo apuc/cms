@@ -26,6 +26,7 @@ function test_func2_1()
    // prn(category_get_by_record_type('feedback'));
    // prn(category_get_by_type_category('type_feedback'));
    // prn(record_get_category(82));
+    smart_mail('qqqqq@nbvb.jh','wwwww@fdfd.fd', 'fghjcvbnyu', 'mnbfds gtrsg fgh');
 }
 function test_func2_2()
 {

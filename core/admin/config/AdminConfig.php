@@ -24,6 +24,7 @@ class AdminConfig
                 'themes',
                 'mods',
                 'links',
+                'mail',
             ]
         ];
     }

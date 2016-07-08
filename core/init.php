@@ -19,6 +19,7 @@ require_once ('Category.php');
 require_once ('Forms.php');
 require_once ('Url.php');
 require_once ('Ajax.php');
+require_once ('Phpmailer.php');
 
 $core = new Core();
 
@@ -31,6 +32,7 @@ $header = new Head();
 $category = new Category();
 $form = new Forms();
 $url = new Url();
+$mailer = new PHPMailer();
 
 
 require_once ('functions/config.php');
@@ -42,6 +44,7 @@ require_once ('functions/record_meta.php');
 require_once ('functions/category.php');
 require_once ('functions/forms.php');
 require_once ('functions/url.php');
+require_once ('functions/mail.php');
 
 require_once ('User.php');
 require_once ('functions/user.php');
