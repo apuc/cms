@@ -6,7 +6,7 @@
  * Time: 14:44
  */
 
-$admin->addMenuItem('Слайдер', 'slider', 'slider_func', ['admin'], 3, 'fa-sliders ', true, true);
+$admin->addMenuItem('Слайдер', 'slider', 'slider_func', ['admin','user'], 3, 'fa-sliders ', true, true);
 
 function slider_func($app)
 {
