@@ -6,7 +6,7 @@
  * Time: 15:10
  */
 
-$admin->addMenuItem('test', 'tets', 'test_func', ['admin', 'user'], 6);
+$admin->addMenuItem('test', 'tets', 'test_func', ['admin','user'], 6);
 
 function test_func()
 {
@@ -14,13 +14,14 @@ function test_func()
     echo $options->get('title');
 }
 
-$admin->addMenuItem('test3', 'test2', 'test_func2',['admin'], 6, 'fa-bell', true, true);
-$admin->addSubMenuItem('test2', 'Тестовое подменю', 'test2_1', 'test_func2_1');
+$admin->addMenuItem('test3', 'test2', 'test_func2',['admin'], 6, 'fa-bell',true, true);
+$admin->addSubMenuItem('test2', 'Тестовое подменю', 'test2_1', 'test_func2_1',true);
 $admin->addSubMenuItem('test2', 'Тестовое подменю2', 'test2_2', 'test_func2_2');
 //user_login('wwww@mail.ru', '123321');
-function test_func2_1()
+function test_func2_1($app)
 {
     echo '2_1';
+    prn($app->user->current_user);
     //prn(category_get_by_slug('glavnaya'));
   //  prn(category_get_by_id(8));
    // prn(category_get_by_record_type('feedback'));
@@ -29,7 +30,8 @@ function test_func2_1()
 }
 function test_func2_2()
 {
-    prn(category_add('Видео', 'video', 'type_feedback', '', 'feedback'));
+    //prn(category_add('Видео', 'video', 'type_feedback', '', 'feedback'));
+    prn(user_get_info());
 }
 function test_func2($app)
 {
@@ -58,8 +60,6 @@ $record_hook->addToSave('author','feedback', 'save_custom', true);
 function feedback_custom($app)
 {
     render('/views/author_input.php',[]);
-
-
 }
 
 function save_custom($app)

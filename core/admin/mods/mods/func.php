@@ -21,7 +21,6 @@ function all_mods($app)
                 set_option('mods', json_encode($all_mods));
             }
         }
-
     }
     if (isset($_GET['to_deactive'])) {
         $all_mods = [];

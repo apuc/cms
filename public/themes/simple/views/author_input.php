@@ -8,5 +8,5 @@
 ?>
 <div class="form-group">
     <label>Автор</label>
-    <input type="text" name="author" class="form-control" placeholder="Автор">
+    <input type="text" name="author" class="form-control" placeholder="Автор" data-tpl="123">
 </div>

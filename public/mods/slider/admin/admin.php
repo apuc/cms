@@ -10,6 +10,6 @@ $admin->addMenuItem('Слайдер', 'slider', 'slider_func', ['admin'], 3, 'fa
 
 function slider_func($app)
 {
-    prn(123);
+    prn(get_option('title'));
     slider_test();
 }

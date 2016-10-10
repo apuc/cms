@@ -7,5 +7,6 @@
  */
 
 function slider_test(){
+    echo form_select('123',null,[1,3],['class'=>'ddd']);
     prn(321);
 }

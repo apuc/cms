@@ -469,4 +469,38 @@ class Db
     {
         return $this->getOne($this->query);
     }
+
+    public function insertMany($data, $table)
+    {
+
+        if (!empty($data)) {
+            $query = "INSERT INTO `$table` ";
+            $key = "(";
+            foreach ($data[0] as $k => $value) {
+                $key .= $k . ", ";
+
+            }
+            $key = substr($key, 0, -2);
+
+            $key .= ")";
+            $query .= $key . " VALUES ";
+            foreach($data as $value){
+                $query .= ' (';
+                foreach($value as $item){
+                    if (is_int($item)) {
+                        $query .= $item . ",";
+                    } else {
+                        $query .= "'" . $item . "',";
+                    }
+                }
+                $query = substr($query, 0, -1);
+                $query .= '),';
+            }
+            $query = substr($query, 0, -1);
+            return $this->rawQuery($query);
+
+        } else {
+            return false;
+        }
+    }
 }
