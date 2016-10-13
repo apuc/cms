@@ -12,7 +12,7 @@
 <div class="themes__item">
     <div class="themes__item_box">
         <div class="themes__item_head">
-            <img src="/public/themes/simple/thumbnail.jpg">
+            <img src="/public/themes/<?= $character->slug; ?>/thumbnail.jpg">
         </div>
         <div class="themes__item_content">
            <h4><?= $character->name ?></h4>

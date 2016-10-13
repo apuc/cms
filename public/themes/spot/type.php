@@ -27,121 +27,50 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="index.html">HOME</a></li>
+                <li><a href="index.html">HOME</a></li>
                 <li><a href="about.html">ABOUT</a></li>
                 <li><a href="services.html">SERVICES</a></li>
-                <li><a href="/type/works">WORKS</a></li>
+                <li class="active"><a href="works.html">WORKS</a></li>
                 <li><a data-toggle="modal" data-target="#myModal" href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>
 
-<div id="headerwrap">
+<div id="blue">
     <div class="container">
         <div class="row centered">
             <div class="col-lg-8 col-lg-offset-2">
-                <h1>It Doesn't Take a Rocket <b>Scientist</b></h1>
-                <h2>It Takes a Designer</h2>
+                <h4>WE WORK HARD TO ACHIEVE EXCELLENCE</h4>
+                <p>AND WE ARE HAPPY TO DO IT</p>
             </div>
         </div><!-- row -->
     </div><!-- container -->
-</div><!-- headerwrap -->
+</div><!--  bluewrap -->
 
+<div class="container desc">
+    <?php foreach($records as $record): ?>
+        <div class="row">
+            <br><br>
+            <div class="col-lg-6 centered">
+                <img src="<?= $record['photo'] ?>" alt="">
+            </div><!-- col-lg-6 -->
+            <div class="col-lg-6">
+                <h4><?= $record['title'] ?></h4>
+                <?= $record['content'] ?>
+                <!--<p>
+                    <i class="fa fa-circle-o"></i> Mobile Design<br/>
+                    <i class="fa fa-circle-o"></i> Web Design<br/>
+                    <i class="fa fa-circle-o"></i> Development<br/>
+                    <i class="fa fa-link"></i> <a href="#">BlackTie.co</a>
+                </p>-->
+            </div>
+        </div><!-- row -->
 
-<div class="container w">
-    <div class="row centered">
         <br><br>
-        <div class="col-lg-4">
-            <i class="fa fa-heart"></i>
-            <h4>DESIGN</h4>
-            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even believable.</p>
-        </div><!-- col-lg-4 -->
-
-        <div class="col-lg-4">
-            <i class="fa fa-laptop"></i>
-            <h4>BOOTSTRAP</h4>
-            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even believable.</p>
-        </div><!-- col-lg-4 -->
-
-        <div class="col-lg-4">
-            <i class="fa fa-trophy"></i>
-            <h4>SUPPORT</h4>
-            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even believable.</p>
-        </div><!-- col-lg-4 -->
-    </div><!-- row -->
-    <br>
-    <br>
+        <hr>
+    <?php endforeach; ?>
 </div><!-- container -->
-
-
-<!-- PORTFOLIO SECTION -->
-<div id="dg">
-    <div class="container">
-        <div class="row centered">
-            <h4>LATEST WORKS</h4>
-            <br>
-            <div class="col-lg-4">
-                <div class="tilt">
-                    <a href="#"><img src="<?=  theme_dir_uri() ?>/img/p01.png" alt=""></a>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="tilt">
-                    <a href="#"><img src="<?=  theme_dir_uri() ?>/img/p03.png" alt=""></a>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="tilt">
-                    <a href="#"><img src="<?=  theme_dir_uri() ?>/img/p02.png" alt=""></a>
-                </div>
-            </div>
-        </div><!-- row -->
-    </div><!-- container -->
-</div><!-- DG -->
-
-
-<!-- FEATURE SECTION -->
-<div class="container wb">
-    <div class="row centered">
-        <br><br>
-        <div class="col-lg-8 col-lg-offset-2">
-            <h4>WE CREATE FIRST CLASS DESIGN</h4>
-            <p>By being true to the brand we represent, we elevate the audiences’ relationship to it. Like becomes love becomes a passion. Passion becomes advocacy. And we see the brand blossom from within, creating a whole story the audience embraces. That’s when the brand can truly flex its muscles.</p>
-            <p><br/><br/></p>
-        </div>
-        <div class="col-lg-2"></div>
-        <div class="col-lg-10 col-lg-offset-1">
-            <img class="img-responsive" src="<?=  theme_dir_uri() ?>/img/munter.png" alt="">
-        </div>
-    </div><!-- row -->
-</div><!-- container -->
-
-
-<div id="lg">
-    <div class="container">
-        <div class="row centered">
-            <h4>OUR AWESOME CLIENTS</h4>
-            <div class="col-lg-2 col-lg-offset-1">
-                <img src="<?=  theme_dir_uri() ?>/img/c01.gif" alt="">
-            </div>
-            <div class="col-lg-2">
-                <img src="<?=  theme_dir_uri() ?>/img/c02.gif" alt="">
-            </div>
-            <div class="col-lg-2">
-                <img src="<?=  theme_dir_uri() ?>/img/c03.gif" alt="">
-            </div>
-            <div class="col-lg-2">
-                <img src="<?=  theme_dir_uri() ?>/img/c04.gif" alt="">
-            </div>
-            <div class="col-lg-2">
-                <img src="<?=  theme_dir_uri() ?>/img/c05.gif" alt="">
-            </div>
-        </div><!-- row -->
-    </div><!-- container -->
-</div><!-- dg -->
 
 
 <div id="r">
@@ -197,5 +126,6 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <?php $header->printScriptFooter(); ?>
+
 </body>
 </html>

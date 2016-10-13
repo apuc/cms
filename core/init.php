@@ -65,6 +65,7 @@ if($load[0] == 'admin'){
     include (ROOT_DIR . '/core/admin/index.php');
 }
 else{
+    $slug = $load[1];
     include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/func.php');
     if($load[0] == 'index'){
         include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/index.php');
@@ -73,6 +74,7 @@ else{
         include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/category.php');
     }
     if($load[0] == 'type'){
+        $records = record_get_by_type($slug);
         include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/type.php');
     }
     if($load[0] == 'record'){

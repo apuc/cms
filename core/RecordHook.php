@@ -38,12 +38,15 @@ class RecordHook
      */
     public function getCustomField($type)
     {
-        foreach($this->custom_field as $custom){
-            if($type == $custom['record_type']){
-                if ($custom['app']) {
-                    call_user_func($custom['func_name'], $this->app);
-                } else {
-                    call_user_func($custom['func_name']);
+
+        if(!empty($this->custom_field)){
+            foreach($this->custom_field as $custom){
+                if($type == $custom['record_type']){
+                    if ($custom['app']) {
+                        call_user_func($custom['func_name'], $this->app);
+                    } else {
+                        call_user_func($custom['func_name']);
+                    }
                 }
             }
         }
