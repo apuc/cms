@@ -16,12 +16,12 @@ $admin->addMenuItem('Все звписи', 'all_record', 'admin_all_record', ['a
 $admin->addMenuItem('Удаление записи', 'del_record', 'admin_del_record', ['admin'], 1, '', false, true);
 $admin->addMenuItem('Редактировать запись', 'edit_record', 'admin_edit_record', ['admin'], 1, '', false, true);
 
+$category->addCategoryTypeGroup('Категории', 'record_cat', 'record');
 
 function admin_add_record($app)
 {
     $user = get_current();
     if (isset($_POST['submit'])) {
-
         $record_id = record_add([
             'title' => $_POST['title'],
             'author' => $user['id'],
@@ -29,6 +29,7 @@ function admin_add_record($app)
             'type' => $_POST['type'],
             'photo' => $_POST['photo'],
         ]);
+
         $check_id = $_POST['check_id'];
         $check = substr($check_id, 0, -1);
         $check_i = explode(',', $check);

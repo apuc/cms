@@ -41,6 +41,7 @@
                                <?= $record['content'] ?>
                             </textarea>
                         </div>
+                        <?php record_get_custom_field($type) ?>
                         <input type="hidden" name="check_id" value="<?= implode(',', $this_category)?>," id="check_id">
                         <div class="box-footer">
                             <button type="submit" name="save" value="<?= $record['id'] ?>" class="btn btn-primary">Сохранить</button>

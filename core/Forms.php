@@ -118,6 +118,24 @@ class Forms
     }
 
     /**
+     * @param $name
+     * @param bool|integer|array $value
+     * @param $data
+     * @param bool|array $options
+     * @return string
+     */
+    public function radiobuttonsList($name, $value = false, $data, $options = false)
+    {
+        $op = $this->getOptions($options);
+        $html = '';
+        foreach ($data as $key => $val) {
+            $ch = (in_array($key, $value)) ? 'checked' : '';
+            $html .= "<input name='" . $name . "[]' $ch type='radio' value='$key' $op>$val";
+        }
+        return $html;
+    }
+
+    /**
      * @param $name string
      * @param string $value
      * @param bool|false $options array
@@ -129,6 +147,12 @@ class Forms
         return "<textarea name='$name' $op>$value</textarea>";
     }
 
+    /**
+     * @param string $value
+     * @param $for
+     * @param bool $options
+     * @return string
+     */
     public function label($value, $for, $options = false)
     {
         $op = $this->getOptions($options);
@@ -139,7 +163,7 @@ class Forms
      * @param $options array
      * @return string
      */
-    public function getOptions($options)
+    private function getOptions($options)
     {
         $op = '';
         if ($options) {
@@ -150,6 +174,12 @@ class Forms
         return $op;
     }
 
+    /**
+     * @param string $key
+     * @param string $value
+     * @param  array $array
+     * @return array
+     */
     public function arrayMap($key, $value, $array)
     {
         $arr = [];
@@ -157,5 +187,29 @@ class Forms
             $arr[$item[$key]] = $item[$value];
         }
         return $arr;
+    }
+
+    public function createForm($data){
+        $html = '';
+        if(!empty($data)){
+            $html .= $this->begin(['id'=>$data['id'],'class'=>$data['class']],$data['method'],$data['action']);
+            foreach($data['items'] as $item){
+                if($item['type'] == 'text'){
+
+                    //$html .= $this->inputText($item['name'], $item['value'],['id'=>$item['id'], 'class'=>$item['class'],'placeholder'=>$item['placeholder']]);
+                    $html .= $this->inputText($item['name'], $item['value'],$item['options']);
+                }elseif ($item['type']=='dropDownList'){
+                    $html .= $this->dropDownList( $item['name'],$item['selected'] , $item['data'],$item['options']);
+                }elseif ($item['type']=='radiobuttonsList'){
+                    $html .= $this->radiobuttonsList( $item['name'],$item['value'],$item['data'] , $item['options']);
+                }elseif ($item['type']=='checkboxList'){
+                    $html .= $this->checkboxList( $item['name'], $item['value'], $item['data'],$item['options'] );
+                }else{
+                    $html .= $this->input($item['type'],$item['name'],$item['value'],$item['options']);
+                }
+            }
+            $html .= $this->end();
+        }
+        return $html;
     }
 }

@@ -16,6 +16,11 @@ class Ajax
         $this->app = new App();
     }
 
+    /**
+     * @param string $action
+     * @param string $func_name
+     * @param bool $app
+     */
     public function add($action, $func_name, $app = false)
     {
         $this->events[] = [
@@ -25,6 +30,9 @@ class Ajax
         ];
     }
 
+    /**
+     * @param string $action
+     */
     public function perform($action){
         foreach($this->events as $event){
             if($event['action'] == $action){

@@ -23,6 +23,8 @@ class AdminConfig
                 'category',
                 'themes',
                 'mods',
+                'links',
+                'mail',
             ]
         ];
     }

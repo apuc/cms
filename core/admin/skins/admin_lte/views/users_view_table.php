@@ -26,7 +26,7 @@
             </li>
         </ul>
 
-        <a href="/<?= config_routing('admin-panel') ?>/users/"> class="btn btn-primary btn-block"><b>Список
+        <a href="/<?= config_routing('admin-panel') ?>/users/" class="btn btn-primary btn-block"><b>Список
                 пользователей</b></a>
     </div>
 </div>

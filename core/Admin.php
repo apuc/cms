@@ -65,6 +65,12 @@ class Admin
         ];
     }
 
+    /**
+     * @param string $parent_slug
+     * @param string $title
+     * @param string $slug
+     * @param bool $app
+     */
     public function addRecordSubItemCategory($parent_slug, $title, $slug, $app = false)
     {
         $this->sub_menu_items[$parent_slug][] = [

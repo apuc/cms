@@ -1,0 +1,8 @@
+<?xml version='1.0' standalone='yes'?>
+<main>
+    <name>Spot</name>
+    <slug>spot</slug>
+    <description>Тема на основе бутстрап</description>
+    <author>Кирилл, Антон</author>
+    <version>0.1</version>
+</main>
