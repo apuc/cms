@@ -335,7 +335,7 @@ class Db
             if ($k == 'id') {
                 $this->query .= " $k = $v";
             } else {
-                if (is_int($v)) {
+                if (is_int($v) or is_numeric($v)) {
                     $this->query .= " $k = $v";
                 } else {
                     if ($direct) {
@@ -461,6 +461,18 @@ class Db
     public function join($table, $param, $join = "")
     {
         $this->query .= $join . " JOIN  $table ON  $param";
+        return $this;
+    }
+
+    /**
+     * @param string $table
+     * @param string $param
+     * @param string $join
+     * @return $this
+     */
+    public function leftJoin($table, $param, $join = "")
+    {
+        $this->query .= $join . " LEFT JOIN  $table ON  $param";
         return $this;
     }
 

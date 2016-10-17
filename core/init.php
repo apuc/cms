@@ -20,6 +20,8 @@ require_once ('Forms.php');
 require_once ('Url.php');
 require_once ('Ajax.php');
 require_once ('Phpmailer.php');
+require_once ('ObjectRecord.php');
+require_once ('GetRecords.php');
 
 $core = new Core();
 
@@ -53,32 +55,57 @@ $user = new User();
 
 require_once ('App.php');
 require_once ('RecordHook.php');
+require_once ('Settings.php');
 require_once ('functions/record_hook.php');
 $record_hook = new RecordHook();
+$settings = new Settings();
 
 $ajax = new Ajax();
 
 $rout = new Routing();
+
+require_once ('functions/theme.php');
 
 $load = $rout->run();
 if($load[0] == 'admin'){
     include (ROOT_DIR . '/core/admin/index.php');
 }
 else{
-    $slug = $load[1];
+    $records = new GetRecords($load);
+
+    include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/admin/admin.php');
     include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/func.php');
     if($load[0] == 'index'){
         include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/index.php');
     }
     if($load[0] == 'category'){
-        include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/category.php');
+        if(file_exists(ROOT_DIR . '/public/themes/' . $options->get('theme') . '/category-type-'.$records->type.'.php')){
+            include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/category-type-'.$records->type.'.php');
+        }
+        else{
+            if(file_exists(ROOT_DIR . '/public/themes/' . $options->get('theme') . '/category-'.$records->page_type_name.'.php')){
+                include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/category-'.$records->page_type_name.'.php');
+            }
+            else {
+                include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/category.php');
+            }
+        }
     }
     if($load[0] == 'type'){
-        $records = record_get_by_type($slug);
-        include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/type.php');
+        if(file_exists(ROOT_DIR . '/public/themes/' . $options->get('theme') . '/type-'.$records->page_type_name.'.php')){
+            include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/type-'.$records->page_type_name.'.php');
+        }
+        else {
+            include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/type.php');
+        }
     }
     if($load[0] == 'record'){
-        include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/record.php');
+        if(file_exists(ROOT_DIR . '/public/themes/' . $options->get('theme') . '/record-'.$records->type.'.php')){
+            include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/record-'.$records->type.'.php');
+        }
+        else {
+            include (ROOT_DIR . '/public/themes/' . $options->get('theme') . '/record.php');
+        }
     }
     if($load[0] == '404'){
         header("HTTP/1.1 404 Not Found");

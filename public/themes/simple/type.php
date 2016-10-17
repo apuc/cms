@@ -6,4 +6,7 @@
  * Time: 10:13
  */
 echo 'type';
-prn($load);
+
+foreach($records->get_records() as $record){
+    prn($record->get_author());
+}

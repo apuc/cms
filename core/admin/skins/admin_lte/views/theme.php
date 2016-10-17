@@ -22,6 +22,7 @@
             <p><b>Версия: </b><?= $character->version ?></p>
             <?php if($character->active == 1) :?>
             <button type="submit" name="active" class="btn btn-success">Тема активна</button>
+            <a href="/<?= config_routing('admin-panel') ?>/theme_settings" name="active" class="btn btn-primary">Настройки</a>
             <?php  endif?>
             <?php if($character->active == 0): ?>
                 <a href="<?= admin_url('theme') ?>/?to_active=<?= $character->slug;?>" class="btn btn-primary">Активировать</a>

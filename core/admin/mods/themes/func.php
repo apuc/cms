@@ -33,3 +33,20 @@ function theme_func()
     }
 }
 
+$admin->addMenuItem('Настройки темы', 'theme_settings', 'theme_settings_func', ['admin'], 1, 'fa-picture-o', false, true);
+
+function theme_settings_func($app){
+    if(!empty($_POST)){
+        foreach($_POST as $key => $value){
+            set_option($key,$value);
+        }
+        render_admin('/admin_lte/views/alert_success.php', [
+            'title' => 'Настройки сохранены!',
+            'msg' => '',
+        ]);
+    }
+    render_admin('/admin_lte/views/theme_settings.php', [
+
+    ]);
+}
+

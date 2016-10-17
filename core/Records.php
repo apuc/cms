@@ -9,7 +9,7 @@
 class Records
 {
     public $records_types;
-    private $core;
+    public $core;
     public $custom_field;
 
     function __construct()
@@ -191,6 +191,16 @@ class Records
     public function get_by_type($record_type)
     {
         return $this->core->db->getByField('type', $record_type, $this->core->config->db()['suffix'] . 'records');
+    }
+
+    public function get_by_category($id){
+        $rec = $this->core->db->find(db_table('category_relationship'),db_table('records') . '.*')
+            ->join(db_table('records'),
+                $this->core->config->db()['suffix'] . 'category_relationship.record_id = ' . $this->core->config->db()['suffix'] . 'records.id')
+            ->where(['category_id' => $id])
+            ->groupBy(db_table('records') . '.id')
+            ->all();
+        return $rec;
     }
 
     /**

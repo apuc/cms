@@ -21,3 +21,50 @@ function save_custom($app)
 {
 
 }
+
+$settings->addSection('Настройки главной','main');
+
+$settings->addSetting('spot_main_name', 'main',[
+    'field_type' => 'text',
+    'label' => 'Имя сайта',
+    'default_value' => 'Art Craft',
+    'placeholder' => 'Имя сайта'
+]);
+
+$settings->addSetting('spot_main_h1', 'main',[
+    'field_type' => 'text',
+    'label' => 'h1 на главной',
+    'default_value' => 'Заголовок h1',
+]);
+
+$settings->addSetting('spot_main_h2', 'main',[
+    'field_type' => 'textarea',
+    'label' => 'h2 на главной',
+    'default_value' => 'Описание сайта',
+]);
+
+$settings->addSetting('spot_main_logo', 'main',[
+    'field_type' => 'file',
+    'label' => 'Логотип',
+]);
+
+$settings->addSetting('spot_main_bg', 'main',[
+    'field_type' => 'file',
+    'label' => 'Фон',
+]);
+
+$settings->addSetting('spot_main_select', 'main',[
+    'field_type' => 'select',
+    'label' => 'Тип контента',
+    'default_value' => 1,
+    'options' => [1=>'Тип 1', 2=>'Тип 2']
+]);
+
+$settings->addSection('Настройки header','header');
+
+$settings->addSetting('spot_header', 'header',[
+    'field_type' => 'text',
+    'label' => 'Название компании',
+    'default_value' => '',
+    'placeholder' => 'Компания'
+]);

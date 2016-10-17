@@ -41,6 +41,11 @@ function record_get_by_type($record_type)
     return $record->get_by_type($record_type);
 }
 
+function record_get_by_category($id){
+    global $record;
+    return $record->get_by_category($id);
+}
+
 function record_get_category($id)
 {
     global $record;

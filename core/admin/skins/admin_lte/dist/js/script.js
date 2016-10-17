@@ -20,6 +20,22 @@ $(document).ready(function () {
         });
     });
 
+    $('.btn-theme-img').on('click', function () {
+        var id = $(this).attr('data-id');
+        console.log(id);
+        $('<div id="editor" />').dialogelfinder({
+            lang: 'ru',
+            url: '/core/admin/skins/admin_lte/plugins/elFinder/php/connector.php',
+            getFileCallback: function (file) {
+                $('#editor').dialogelfinder('close');
+                $('#editor').closest('.elfinder').val(file.path);
+                console.log(file.url);
+                $('#' + id + '_box').html('<img src="' + file.url + '" width="200px">');
+                $('#' + id).val(file.url);
+            }
+        });
+    });
+
     $('#add_categ').on('click', function () {
         var form = $('#categ_form').serialize();
         $.ajax({
